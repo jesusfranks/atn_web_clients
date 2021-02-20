@@ -1,0 +1,28 @@
+@layout('layouts.main')
+
+@section('extracss')
+{{ style('info') }}
+@endsection
+
+@section('title')
+ATN - YO
+@endsection
+
+@section('content')
+
+<div class="container">
+    <h1>Información de usuario</h1>
+    <div class="card">
+        {{--  <img src="img_avatar.png" alt="Avatar" style="width:100%">  --}}
+        <div class="container">
+            <h3><b>{{user.name}} {{user.first_last_name}}</b></h3>
+            <p>{{user.email}}</p>
+            @if(user.promotor)
+                <p>{{user.code}}</p>
+            @endif
+        </div>
+    </div>
+</div>
+
+
+@endsection

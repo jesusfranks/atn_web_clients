@@ -1,0 +1,57 @@
+@layout('layouts.main')
+
+@section('extracss')
+{{ style('form') }}
+@endsection
+
+@section('title')
+ATN - Clients
+@endsection
+
+@section('content')
+<h1>Lista de clientes</h3>
+<a href="/clients/newClient" ><button >Nuevo Cliente</button></a>
+
+<div class="job-container">
+
+    <div class="container">
+        @if(clients)
+            @each(client in clients)
+            <div class="job-container">
+                <div class="left">
+                    <div class="job-info">
+                        <h3>{{ client.id }}</h3>
+                        <h4>Nombre: {{ client.name }} {{ client.first_last_name }} {{ client.sec_last_name }}</h4>
+                        <p>email: {{ client.email }}</p>
+                        <p>Celular:  {{ client.cellphone }}</p>
+                        <p>Horario de contacto: {{ client.contact_schedule}}</p>
+                        <a href="{{ route('ClientController.redirectFormEdit', { id: client.id }) }}"><button>Editar</button></a>
+                        <ul>
+                            <br>
+                            <li><a href="{{ route('ClientController.delete', { id: client.id }) }}">Eliminar</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="center">
+                    <a href="#"><button class="info">Empleo</button></a>
+                    <a href="#"><button class="info">Referencias</button></a>
+                    <a href="#"><button class="info">Banco</button></a>
+                    <a href="#"><button class="info">Direcciones</button></a>
+                    <a href="#"><button class="info2">Crédito</button></a>
+                </div>
+            </div>
+            @endeach
+        @endif
+
+        
+            
+            <div style="clear:both;"></div>
+        
+
+    </div>
+
+</div>
+
+
+
+@endsection

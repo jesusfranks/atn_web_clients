@@ -18,6 +18,9 @@ class User extends Model {
       if (userInstance.dirty.password) {
         userInstance.password = await Hash.make(userInstance.password)
       }
+      if (userInstance.code != null) {
+        userInstance.promotor = true
+      }
     })
   }
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  {{ style('style') }}
+
+  @!section('extracss')
+
+  <title>
+      @!section('title')
+  </title>
+
+</head>
+<body>
+
+    <header>
+        @loggedIn
+            <a href="/getuser" id="logo">
+            <img src="atn.png" alt="logo" width="200" height="84" style="float:right">
+            </a>
+            @else
+            <a href="/" id="logo">
+            <img src="atn.png" alt="logo" width="200" height="84" style="float:right">
+            </a>
+        @endloggedIn
+        <nav>
+            <ul>
+            @loggedIn
+                <li style="float:left"><a href="/clients">clientes</a></li>
+                <li style="float:left"><a href="/credits">Créditos</a></li>
+                <li><a href="/logout">Logout</a></li>
+            @else
+                <li><a href="/login">Inicar sesión</a></li>
+                <li><a href="/signup">Registrarse</a></li>
+            @endloggedIn
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        @!section('content')
+    </div>
+
+</body>
+</html>
