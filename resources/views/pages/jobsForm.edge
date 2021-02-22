@@ -1,0 +1,220 @@
+@layout('layouts.main')
+
+@section('extracss')
+{{ style('index') }}
+@endsection
+
+@section('title')
+ATN - Clients form
+@endsection
+
+@section('main')
+
+<div class="container" style="margin-top: 3rem;">
+
+    @if(job)
+        <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+            <h1>Editanto Lugar de trabajo del cliente: {{ job.client_id }}</h1>
+        </div>
+        <form action="{{ route('JobController.edit', {id: job.id} ) }}" method="POST">
+            {{ csrfField() }}
+            <div class="row">
+                {{--Lugar--}} 
+                <div class="form-group col-sm">
+                    <label for="place">Lugar</label>
+                    <input class="form-control" type="text" name="place" value="{{ job.place}}">
+                    @if(hasErrorFor('place'))
+                        <span>
+                            {{ getErrorFor('place') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Ocupación--}} 
+                <div class="form-group col-sm">
+                    <label for="occupation">Ocupación</label>
+                    <input class="form-control" type="text" name="occupation" value="{{ job.occupation }}">
+                    @if(hasErrorFor('occupation'))
+                        <span>
+                            {{ getErrorFor('occupation') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Puesto--}}    
+                <div class="form-group col-sm">
+                    <label for="job">Puesto</label>
+                    <input class="form-control" type="text" name="job" value="{{ job.job }}">
+                    @if(hasErrorFor('job'))
+                        <span>
+                            {{ getErrorFor('job') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--Antigüedad--}}    
+                <div class="form-group col-sm">
+                    <label for="time_working">Antigüedad</label>
+                    <input class="form-control" type="text" name="time_working" value="{{ job.time_working }}">
+                    @if(hasErrorFor('time_working'))
+                    <span>
+                        {{ getErrorFor('time_working') }}
+                    </span>
+                @endif
+                </div>                
+            </div>
+            <div class="row">
+                {{--phone--}}
+                <div class="form-group col-sm">
+                    <label for="phone">Telefono</label>
+                    <input class="form-control" type="text" name="phone" value="{{ job.phone }}">
+                    @if(hasErrorFor('phone'))
+                        <span>
+                            {{ getErrorFor('phone') }}
+                        </span>
+                    @endif
+                </div>
+                {{--extension--}}
+                <div class="form-group col-sm">
+                    <label for="extension">Extensión</label>
+                    <input class="form-control" type="extension" name="extension" value="{{ job.extension }}">
+                    @if(hasErrorFor('extension'))
+                        <span>
+                            {{ getErrorFor('extension') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--Nómina--}}    
+                <div class="form-group col-sm">
+                    <label for="payroll">Nómina</label>
+                    <input class="form-control" type="text" name="payroll" value="{{ job.payroll }}">
+                    @if(hasErrorFor('payroll'))
+                        <span>
+                            {{ getErrorFor('payroll') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--Ingresos--}}    
+                <div class="form-group col-sm">
+                    <label for="income">Ingresos</label>
+                    <input class="form-control" type="text" name="income" value="{{ job.income }}">
+                    @if(hasErrorFor('income'))
+                        <span>
+                            {{ getErrorFor('income') }}
+                        </span>
+                    @endif
+                </div>
+            </div>    
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <button class="btn btn-secondary" type="submit">Guardar</button>
+            </div>
+        </form>
+        
+    @else
+        <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+            <h1>Agregar Lugar de trabajo</h1>
+        </div>
+
+        <form action="{{ route('JobController.create', {client_id: client_id} ) }}" method="POST">
+            {{ csrfField() }}
+            <div class="row">
+                {{--Lugar--}} 
+                <div class="form-group col-sm">
+                    <label for="place">Lugar</label>
+                    <input class="form-control" type="text" name="place" value="{{ old('place', '') }}">
+                    @if(hasErrorFor('place'))
+                        <span>
+                            {{ getErrorFor('place') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Ocupación--}} 
+                <div class="form-group col-sm">
+                    <label for="occupation">Ocupación</label>
+                    <input class="form-control" type="text" name="occupation" value="{{ old('occupation', '') }}">
+                    @if(hasErrorFor('occupation'))
+                        <span>
+                            {{ getErrorFor('occupation') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Puesto--}}    
+                <div class="form-group col-sm">
+                    <label for="job">Puesto</label>
+                    <input class="form-control" type="text" name="job" value="{{ old('job', '') }}">
+                    @if(hasErrorFor('job'))
+                        <span>
+                            {{ getErrorFor('job') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--Antigüedad--}}    
+                <div class="form-group col-sm">
+                    <label for="time_working">Antigüedad</label>
+                    <input class="form-control" type="text" name="time_working" value="{{ old('time_working', '') }}">
+                    @if(hasErrorFor('time_working'))
+                    <span>
+                        {{ getErrorFor('time_working') }}
+                    </span>
+                @endif
+                </div>                
+            </div>
+            <div class="row">
+                {{--phone--}}
+                <div class="form-group col-sm">
+                    <label for="phone">Telefono</label>
+                    <input class="form-control" type="text" name="phone" value="{{ old('phone', '') }}">
+                    @if(hasErrorFor('phone'))
+                        <span>
+                            {{ getErrorFor('phone') }}
+                        </span>
+                    @endif
+                </div>
+                {{--extension--}}
+                <div class="form-group col-sm">
+                    <label for="extension">Extensión</label>
+                    <input class="form-control" type="extension" name="extension" value="{{ old('extension', '') }}">
+                    @if(hasErrorFor('extension'))
+                        <span>
+                            {{ getErrorFor('extension') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--Nómina--}}    
+                <div class="form-group col-sm">
+                    <label for="payroll">Nómina</label>
+                    <input class="form-control" type="text" name="payroll" value="{{ old('payroll', '') }}">
+                    @if(hasErrorFor('payroll'))
+                        <span>
+                            {{ getErrorFor('payroll') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--Ingresos--}}    
+                <div class="form-group col-sm">
+                    <label for="income">Ingresos</label>
+                    <input class="form-control" type="text" name="income" value="{{ old('income', '') }}">
+                    @if(hasErrorFor('income'))
+                        <span>
+                            {{ getErrorFor('income') }}
+                        </span>
+                    @endif
+                </div>
+            </div>    
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <button class="btn btn-secondary" type="submit">Guardar</button>
+            </div>
+        </form>
+    @endif
+
+    
+</div>
+  
+@endsection

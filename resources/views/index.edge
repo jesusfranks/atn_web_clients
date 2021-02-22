@@ -1,13 +1,19 @@
 @layout('layouts.main')
 
+@section('extracss')
+{{ style('index') }}
+@endsection
+
 @section('title')
 Acercate a tu nómina Pachuca
 @endsection
 
-@section('content')
-<div class="container">
-    <h1>Bienvenid@ </h1>  
-    <h1>inicia sesión o registrate</h1>
-</div>
-
+@section('main')
+<div class="jumbotron" style="margin-top: 3rem;">
+    <div class="container" >
+      <h1 class="display-3">Bienvenid@</h1>
+      <p>Este es un servicio exclusivo para empleados de Acércate a tu nómina</p>
+      <p><a class="btn btn-primary btn-lg" href="http://acercateatunomina.com.mx/" role="button">Saber más... &raquo;</a></p>
+    </div>
+  </div>
 @endsection

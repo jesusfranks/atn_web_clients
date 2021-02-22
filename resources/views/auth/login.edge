@@ -1,40 +1,46 @@
 @layout('layouts.main')
 
 @section('extracss')
-{{ style('form') }}
+{{ style('index') }}
 @endsection
 
 @section('title')
 ATN - Login
 @endsection
 
-@section('content')
+@section('main')
 
-<div class="job-container-session">
-    <h1>Iniciar</h1>
+  <div class="modal-dialog text-center">
     @if(flashMessage('loginError'))
         <span>{{ flashMessage('loginError') }}</span>
     @endif
-      <form action="{{ route('UserController.login') }}" method="POST">
-        {{ csrfField() }}
+    <div class="col-sm-8 main-section" >
+        <div class="modal-content">
+            <div class="col-12 user-img" style="margin-top: 1rem">
+                <img src="email.png" alt="user">
+            </div>
+            <form class="col-12" action="{{ route('UserController.login') }}" method="POST">
+                {{ csrfField() }}
 
-        <label for="email">Email</label>
-        <input type="email" name="email" value="{{ old('email', '') }}">
-        @if(hasErrorFor('email'))
-            <span>
-                {{ getErrorFor('email') }}
-            </span>
-        @endif
-
-        <label for="password">Password</label>
-        <input type="password" name="password">
-        @if(hasErrorFor('password'))
-            <span>
-                {{ getErrorFor('password') }}
-            </span>
-        @endif
-
-        <button type="submit">Iniciar sesión</button>
-      </form>
-  </div>
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" name="email" value="{{ old('email', '') }}">
+                @if(hasErrorFor('email'))
+                    <span>
+                        {{ getErrorFor('email') }}
+                    </span>
+                @endif
+    
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" name="password">
+                @if(hasErrorFor('password'))
+                    <span>
+                        {{ getErrorFor('password') }}
+                    </span>
+                @endif
+              
+            <button type="submit" class="btn btn-primary" style="margin-bottom: 1rem; margin-top: 1rem;">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection

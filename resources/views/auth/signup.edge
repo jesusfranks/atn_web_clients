@@ -1,70 +1,79 @@
 @layout('layouts.main')
 
 @section('extracss')
-{{ style('form') }}
+{{ style('index') }}
 @endsection
 
 @section('title')
 ATN - Registro
 @endsection
 
-@section('content')
 
-<div class="job-container-session">
-      <h1>Vamos!</h1>
-      <form action="{{ route('UserController.create') }}" method="POST">
-        {{ csrfField() }}
+@section('main')
+
+<div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section" >
+        <div class="modal-content">
+            <div class="col-12 user-img" style="margin-top: 1rem">
+                <img src="user.png" alt="user">
+            </div>
+            
+            <form class="col-12" action="{{ route('UserController.create') }}" method="POST">
+              {{ csrfField() }}
+              
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="email" name="email" value="{{ old('email', '') }}">
+            @if(hasErrorFor('email'))
+                <span>
+                    {{ getErrorFor('email') }}
+                </span>
+            @endif
+              
+            <label class="form-label" for="name">Nombres</label>
+            <input class="form-control" type="text" name="name" value="{{ old('name', '') }}">
+            @if(hasErrorFor('name'))
+                <span>
+                    {{ getErrorFor('name') }}
+                </span>
+            @endif
+                  
+            <label class="form-label" for="first_last_name">Primer Apellido</label>
+            <input class="form-control" type="text" name="first_last_name" value="{{ old('first_last_name', '') }}">
+            @if(hasErrorFor('first_last_name'))
+                <span>
+                    {{ getErrorFor('first_last_name') }}
+                </span>
+            @endif
+               
+            <label for="sec_last_name">Segundo Apellido</label>
+            <input class="form-control" type="text" name="sec_last_name" value="{{ old('sec_last_name', '') }}">
+            @if(hasErrorFor('sec_last_name'))
+                <span>
+                    {{ getErrorFor('sec_last_name') }}
+                </span>
+            @endif
         
-        <label for="email">Email</label>
-        <input type="email" name="email" value="{{ old('email', '') }}">
-        @if(hasErrorFor('email'))
-            <span>
-                {{ getErrorFor('email') }}
-            </span>
-        @endif
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" name="password">
+            @if(hasErrorFor('password'))
+                <span>
+                    {{ getErrorFor('password') }}
+                </span>
+            @endif
+        
+            <label class="form-label" for="code">Código de promotor</label>
+            <input class="form-control" type="text" name="code" value="{{ old('code', '') }}" placeholder="Si no eres promotor dejalo vacio">
+            @if(hasErrorFor('code'))
+                <span>
+                    {{ getErrorFor('code') }}
+                </span>
+            @endif
+                
+      
+             <button type="submit" class="btn btn-primary" style="margin-bottom: 1rem; margin-top: 1rem;">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-        <label for="name">Nombres</label>
-        <input type="text" name="name" value="{{ old('name', '') }}">
-        @if(hasErrorFor('name'))
-            <span>
-                {{ getErrorFor('name') }}
-            </span>
-        @endif
-
-        <label for="first_last_name">Primer Apellido</label>
-        <input type="text" name="first_last_name" value="{{ old('first_last_name', '') }}">
-        @if(hasErrorFor('first_last_name'))
-            <span>
-                {{ getErrorFor('first_last_name') }}
-            </span>
-        @endif
-        <label for="sec_last_name">Segundo Apellido</label>
-        <input type="text" name="sec_last_name" value="{{ old('sec_last_name', '') }}">
-        @if(hasErrorFor('sec_last_name'))
-            <span>
-                {{ getErrorFor('sec_last_name') }}
-            </span>
-        @endif
-
-        <label for="password">Password</label>
-        <input type="password" name="password">
-        @if(hasErrorFor('password'))
-            <span>
-                {{ getErrorFor('password') }}
-            </span>
-        @endif
-
-        <label for="code">Código de promotor</label>
-        <input type="text" name="code" value="{{ old('code', '') }}" placeholder="Si no eres promotor dejalo vacio">
-        @if(hasErrorFor('code'))
-            <span>
-                {{ getErrorFor('code') }}
-            </span>
-        @endif
-
-
-
-        <button type="submit">Vamos</button>
-      </form>
-  </div>
 @endsection

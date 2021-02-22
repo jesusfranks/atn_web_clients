@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
 
-  {{ style('style') }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    {{ style('jumbotron') }}
 
   @!section('extracss')
 
@@ -14,33 +16,19 @@
 </head>
 <body>
 
-    <header>
-        @loggedIn
-            <a href="/getuser" id="logo">
-            <img src="atn.png" alt="logo" width="200" height="84" style="float:right">
-            </a>
-            @else
-            <a href="/" id="logo">
-            <img src="atn.png" alt="logo" width="200" height="84" style="float:right">
-            </a>
-        @endloggedIn
-        <nav>
-            <ul>
-            @loggedIn
-                <li style="float:left"><a href="/clients">clientes</a></li>
-                <li style="float:left"><a href="/credits">Créditos</a></li>
-                <li><a href="/logout">Logout</a></li>
-            @else
-                <li><a href="/login">Inicar sesión</a></li>
-                <li><a href="/signup">Registrarse</a></li>
-            @endloggedIn
-            </ul>
-        </nav>
-    </header>
+    @include('partials.nav')
 
-    <div class="container">
-        @!section('content')
-    </div>
+    <main role="main">
+      
+        @!section('main')
+      
+    </main>
+
+    <footer class="container">
+        @include('partials.footer')
+    </footer>
+
+    @include('partials.common-scripts')
 
 </body>
 </html>

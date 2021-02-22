@@ -1,255 +1,356 @@
 @layout('layouts.main')
 
 @section('extracss')
-{{ style('form') }}
+{{ style('index') }}
 @endsection
 
 @section('title')
 ATN - Clients form
 @endsection
 
-@section('content')
+@section('main')
 
-<div class="job-container">
-    {{--  Editar un cliente si llega como argumento el cliente y credito si solo llega credito solo se crea un cliente nuevo  --}}
+<div class="container" style="margin-top: 3rem;">
+
     @if(client)
-        <h1>ID del cliente: {{client.id}}</h1>
-        <br>
+        <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+            <h1>Editanto cliente: {{ client.id }}</h1>
+        </div>
+
         <form action="{{ route('ClientController.edit', {id: client.id}) }}" method="POST">
-        {{ csrfField() }}
-        {{--Nombre--}}    
-        <label for="name">Nombres</label>
-        <input type="text" name="name" value="{{ client.name }}">
-        @if(hasErrorFor('name'))
-            <span>
-                {{ getErrorFor('name') }}
-            </span>
-        @endif
-        {{--Primer Apellido--}}    
-        <label for="first_last_name">Primer Apellido</label>
-        <input type="text" name="first_last_name" value="{{ client.first_last_name }}">
-        @if(hasErrorFor('first_last_name'))
-            <span>
-                {{ getErrorFor('first_last_name') }}
-            </span>
-        @endif
-        {{--Segundo Apellido--}}    
-        <label for="sec_last_name">Segundo Apellido</label>
-        <input type="text" name="sec_last_name" value="{{ client.sec_last_name }}">
-        @if(hasErrorFor('sec_last_name'))
-            <span>
-                {{ getErrorFor('sec_last_name') }}
-            </span>
-        @endif
-        {{--civil_status--}}    
-        <label for="civil_status">Estado civil</label>
-        <input type="text" name="civil_status" value="{{ client.civil_status }}">
-        @if(hasErrorFor('civil_status'))
-        <span>
-            {{ getErrorFor('civil_status') }}
-        </span>
-        @endif
-        {{--Nacionality--}}    
-        <label for="nacionality">Nacionalidad</label>
-        <input type="text" name="nacionality" value="{{ client.nacionality }}">
-        @if(hasErrorFor('nacionality'))
-        <span>
-            {{ getErrorFor('nacionality') }}
-        </span>
-        @endif
-        {{--  birth  --}}
-        <label for="birth">Fecha de nacimiento</label>
-        <input type="text" name="birth" value="{{ client.birth }}">
-        @if(hasErrorFor('birth'))
-        <span>
-            {{ getErrorFor('birth') }}
-        </span>
-        @endif
-        {{--type_housing--}}    
-        <label for="type_housing">Tipo de vivienda</label>
-        <input type="text" name="type_housing" value="{{ client.type_housing }}">
-        @if(hasErrorFor('type_housing'))
-        <span>
-            {{ getErrorFor('type_housing') }}
-        </span>
-        @endif
-        {{--living_there--}}    
-        <label for="living_there">Tiempo de arraigo</label>
-        <input type="text" name="living_there" value="{{ client.living_there }}">
-        @if(hasErrorFor('living_there'))
-        <span>
-            {{ getErrorFor('living_there') }}
-        </span>
-        @endif
-        {{--email--}}
-        <label for="email">Email</label>
-        <input type="email" name="email" value="{{ client.email }}">
-        @if(hasErrorFor('email'))
-            <span>
-                {{ getErrorFor('email') }}
-            </span>
-        @endif
-        {{--phone--}}    
-        <label for="phone">Telefono</label>
-        <input type="text" name="phone" value="{{ client.phone }}">
-        @if(hasErrorFor('phone'))
-            <span>
-                {{ getErrorFor('phone') }}
-            </span>
-        @endif
-        {{--cellphone--}}    
-        <label for="cellphone">Célular</label>
-        <input type="text" name="cellphone" value="{{ client.cellphone }}">
-        @if(hasErrorFor('cellphone'))
-            <span>
-                {{ getErrorFor('cellphone') }}
-            </span>
-        @endif
-        {{--contact_schedule--}}    
-        <label for="contact_schedule">Hora de contacto</label>
-        <input type="text" name="contact_schedule" value="{{ client.contact_schedule }}">
-        @if(hasErrorFor('contact_schedule'))
-            <span>
-                {{ getErrorFor('contact_schedule') }}
-            </span>
-        @endif
-        {{--rfc--}}    
-        <label for="rfc">RFC</label>
-        <input type="text" name="rfc" value="{{ client.rfc }}">
-        @if(hasErrorFor('rfc'))
-            <span>
-                {{ getErrorFor('rfc') }}
-            </span>
-        @endif
-        {{--curp--}}    
-        <label for="curp">CURP</label>
-        <input type="text" name="curp" value="{{ client.curp }}">
-        @if(hasErrorFor('curp'))
-            <span>
-                {{ getErrorFor('curp') }}
-            </span>
-        @endif
-        <button type="submit">Guardar</button>
+            {{ csrfField() }}
+            <div class="row">
+                {{--Nombre--}} 
+                <div class="form-group col-sm">
+                    <label for="name">Nombres</label>
+                    <input class="form-control" type="text" name="name" value="{{ client.name }}">
+                    @if(hasErrorFor('name'))
+                        <span>
+                            {{ getErrorFor('name') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Primer Apellido--}} 
+                <div class="form-group col-sm">
+                    <label for="first_last_name">Primer Apellido</label>
+                    <input class="form-control" type="text" name="first_last_name" value="{{ client.first_last_name }}">
+                    @if(hasErrorFor('first_last_name'))
+                        <span>
+                            {{ getErrorFor('first_last_name') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Segundo Apellido--}}    
+                <div class="form-group col-sm">
+                    <label for="sec_last_name">Segundo Apellido</label>
+                    <input class="form-control" type="text" name="sec_last_name" value="{{ client.sec_last_name }}">
+                    @if(hasErrorFor('sec_last_name'))
+                        <span>
+                            {{ getErrorFor('sec_last_name') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--civil_status--}}    
+                <div class="form-group col-sm">
+                    <label for="civil_status">Estado civil</label>
+                    <input class="form-control" type="text" name="civil_status" value="{{ client.civil_status }}">
+                    @if(hasErrorFor('civil_status'))
+                    <span>
+                        {{ getErrorFor('civil_status') }}
+                    </span>
+                @endif
+                </div>
+                
+                {{--Nacionality--}}    
+                <div class="form-group col-sm">
+                    <label for="nacionality">Nacionalidad</label>
+                    <input class="form-control" type="text" name="nacionality" value="{{ client.nacionality }}">
+                    @if(hasErrorFor('nacionality'))
+                    <span>
+                        {{ getErrorFor('nacionality') }}
+                    </span>
+                    @endif
+                </div>
+                
+                {{--  birth  --}}
+                <div class="form-group col-sm">
+                    <label for="birth">Fecha de nacimiento</label>
+                    <input class="form-control" type="text" name="birth" value="{{ client.birth }}">
+                    @if(hasErrorFor('birth'))
+                    <span>
+                        {{ getErrorFor('birth') }}
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--type_housing--}}    
+                <div class="form-group col-sm">
+                    <label for="type_housing">Tipo de vivienda</label>
+                    <input class="form-control" type="text" name="type_housing" value="{{ client.type_housing }}">
+                    @if(hasErrorFor('type_housing'))
+                    <span>
+                        {{ getErrorFor('type_housing') }}
+                    </span>
+                    @endif
+                </div>
+                
+                {{--living_there--}}    
+                <div class="form-group col-sm">
+                    <label for="living_there">Tiempo de arraigo</label>
+                    <input class="form-control" type="text" name="living_there" value="{{ client.living_there }}">
+                    @if(hasErrorFor('living_there'))
+                    <span>
+                        {{ getErrorFor('living_there') }}
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--email--}}
+                <div class="form-group col-sm">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" value="{{ client.email }}">
+                    @if(hasErrorFor('email'))
+                        <span>
+                            {{ getErrorFor('email') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--phone--}}
+                <div class="form-group col-sm">
+                    <label for="phone">Telefono</label>
+                    <input class="form-control" type="text" name="phone" value="{{ client.phone }}">
+                    @if(hasErrorFor('phone'))
+                        <span>
+                            {{ getErrorFor('phone') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--cellphone--}}    
+                <div class="form-group col-sm">
+                    <label for="cellphone">Célular</label>
+                    <input class="form-control" type="text" name="cellphone" value="{{ client.cellphone }}">
+                    @if(hasErrorFor('cellphone'))
+                        <span>
+                            {{ getErrorFor('cellphone') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--contact_schedule--}}    
+                <div class="form-group col-sm">
+                    <label for="contact_schedule">Horario de contacto</label>
+                    <input class="form-control" type="text" name="contact_schedule" value="{{ client.contact_schedule }}">
+                    @if(hasErrorFor('contact_schedule'))
+                        <span>
+                            {{ getErrorFor('contact_schedule') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--rfc--}}    
+                <div class="form-group col-sm">
+                    <label for="rfc">RFC</label>
+                    <input class="form-control" type="text" name="rfc" value="{{ client.rfc }}">
+                    @if(hasErrorFor('rfc'))
+                        <span>
+                            {{ getErrorFor('rfc') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--curp--}}    
+                <div class="form-group col-sm">
+                    <label for="curp">CURP</label>
+                    <input class="form-control" type="text" name="curp" value="{{ client.curp }}">
+                    @if(hasErrorFor('curp'))
+                        <span>
+                            {{ getErrorFor('curp') }}
+                        </span>
+                    @endif
+                </div>
+            </div>    
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <button class="btn btn-secondary" type="submit">Guardar</button>
+            </div>
         </form>
     @else
-        <h1>Nuevo cliente</h1>
+        <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+            <h1>Nuevo cliente</h1>
+        </div>
+
         <form action="{{ route('ClientController.create' ) }}" method="POST">
-        {{ csrfField() }}
-        {{--Nombre--}}    
-        <label for="name">Nombres</label>
-        <input type="text" name="name" value="{{ old('name', '') }}">
-        @if(hasErrorFor('name'))
-            <span>
-                {{ getErrorFor('name') }}
-            </span>
-        @endif
-        {{--Primer Apellido--}}    
-        <label for="first_last_name">Primer Apellido</label>
-        <input type="text" name="first_last_name" value="{{ old('first_last_name', '') }}">
-        @if(hasErrorFor('first_last_name'))
-            <span>
-                {{ getErrorFor('first_last_name') }}
-            </span>
-        @endif
-        {{--Segundo Apellido--}}    
-        <label for="sec_last_name">Segundo Apellido</label>
-        <input type="text" name="sec_last_name" value="{{ old('sec_last_name', '') }}">
-        @if(hasErrorFor('sec_last_name'))
-            <span>
-                {{ getErrorFor('sec_last_name') }}
-            </span>
-        @endif
-        {{--civil_status--}}    
-        <label for="civil_status">Estado civil</label>
-        <input type="text" name="civil_status" value="{{ old('civil_status', '') }}">
-        @if(hasErrorFor('civil_status'))
-        <span>
-            {{ getErrorFor('civil_status') }}
-        </span>
-        @endif
-        {{--Nacionality--}}    
-        <label for="nacionality">Nacionalidad</label>
-        <input type="text" name="nacionality" value="Mexicano">
-        @if(hasErrorFor('nacionality'))
-        <span>
-            {{ getErrorFor('nacionality') }}
-        </span>
-        @endif
-        {{--  birth  --}}
-        <label for="birth">Fecha de nacimiento</label>
-        <input type="text" name="birth" value="{{ old('birth', '') }}">
-        @if(hasErrorFor('birth'))
-        <span>
-            {{ getErrorFor('birth') }}
-        </span>
-        @endif
-        {{--type_housing--}}    
-        <label for="type_housing">Tipo de vivienda</label>
-        <input type="text" name="type_housing" value="{{ old('type_housing', '') }}">
-        @if(hasErrorFor('type_housing'))
-        <span>
-            {{ getErrorFor('type_housing') }}
-        </span>
-        @endif
-        {{--living_there--}}    
-        <label for="living_there">Tiempo de arraigo</label>
-        <input type="text" name="living_there" value="{{ old('living_there', '') }}">
-        @if(hasErrorFor('living_there'))
-        <span>
-            {{ getErrorFor('living_there') }}
-        </span>
-        @endif
-        {{--email--}}
-        <label for="email">Email</label>
-        <input type="email" name="email" value="{{ old('email', '') }}">
-        @if(hasErrorFor('email'))
-            <span>
-                {{ getErrorFor('email') }}
-            </span>
-        @endif
-        {{--phone--}}    
-        <label for="phone">Telefono</label>
-        <input type="text" name="phone" value="{{ old('phone', '') }}">
-        @if(hasErrorFor('phone'))
-            <span>
-                {{ getErrorFor('phone') }}
-            </span>
-        @endif
-        {{--cellphone--}}    
-        <label for="cellphone">Célular</label>
-        <input type="text" name="cellphone" value="{{ old('cellphone', '') }}">
-        @if(hasErrorFor('cellphone'))
-            <span>
-                {{ getErrorFor('cellphone') }}
-            </span>
-        @endif
-        {{--contact_schedule--}}    
-        <label for="contact_schedule">Hora de contacto</label>
-        <input type="text" name="contact_schedule" value="{{ old('contact_schedule', '') }}">
-        @if(hasErrorFor('contact_schedule'))
-            <span>
-                {{ getErrorFor('contact_schedule') }}
-            </span>
-        @endif
-        {{--rfc--}}    
-        <label for="rfc">RFC</label>
-        <input type="text" name="rfc" value="{{ old('rfc', '') }}">
-        @if(hasErrorFor('rfc'))
-            <span>
-                {{ getErrorFor('rfc') }}
-            </span>
-        @endif
-        {{--curp--}}    
-        <label for="curp">CURP</label>
-        <input type="text" name="curp" value="{{ old('curp', '') }}">
-        @if(hasErrorFor('curp'))
-            <span>
-                {{ getErrorFor('curp') }}
-            </span>
-        @endif
-        <button type="submit">Guardar</button>
+            {{ csrfField() }}
+            <div class="row">
+                {{--Nombre--}} 
+                <div class="form-group col-sm">
+                    <label for="name">Nombres</label>
+                    <input class="form-control" type="text" name="name" value="{{ old('name', '') }}">
+                    @if(hasErrorFor('name'))
+                        <span>
+                            {{ getErrorFor('name') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Primer Apellido--}} 
+                <div class="form-group col-sm">
+                    <label for="first_last_name">Primer Apellido</label>
+                    <input class="form-control" type="text" name="first_last_name" value="{{ old('first_last_name', '') }}">
+                    @if(hasErrorFor('first_last_name'))
+                        <span>
+                            {{ getErrorFor('first_last_name') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Segundo Apellido--}}    
+                <div class="form-group col-sm">
+                    <label for="sec_last_name">Segundo Apellido</label>
+                    <input class="form-control" type="text" name="sec_last_name" value="{{ old('sec_last_name', '') }}">
+                    @if(hasErrorFor('sec_last_name'))
+                        <span>
+                            {{ getErrorFor('sec_last_name') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--civil_status--}}    
+                <div class="form-group col-sm">
+                    <label for="civil_status">Estado civil</label>
+                    <input class="form-control" type="text" name="civil_status" value="{{ old('civil_status', '') }}">
+                    @if(hasErrorFor('civil_status'))
+                    <span>
+                        {{ getErrorFor('civil_status') }}
+                    </span>
+                @endif
+                </div>
+                
+                {{--Nacionality--}}    
+                <div class="form-group col-sm">
+                    <label for="nacionality">Nacionalidad</label>
+                    <input class="form-control" type="text" name="nacionality" value="{{ old('nacionality', 'Mexicana') }}">
+                    @if(hasErrorFor('nacionality'))
+                    <span>
+                        {{ getErrorFor('nacionality') }}
+                    </span>
+                    @endif
+                </div>
+                
+                {{--  birth  --}}
+                <div class="form-group col-sm">
+                    <label for="birth">Fecha de nacimiento</label>
+                    <input class="form-control" type="text" name="birth" value="{{ old('birth', '') }}">
+                    @if(hasErrorFor('birth'))
+                    <span>
+                        {{ getErrorFor('birth') }}
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--type_housing--}}    
+                <div class="form-group col-sm">
+                    <label for="type_housing">Tipo de vivienda</label>
+                    <input class="form-control" type="text" name="type_housing" value="{{ old('type_housing', '') }}">
+                    @if(hasErrorFor('type_housing'))
+                    <span>
+                        {{ getErrorFor('type_housing') }}
+                    </span>
+                    @endif
+                </div>
+                
+                {{--living_there--}}    
+                <div class="form-group col-sm">
+                    <label for="living_there">Tiempo de arraigo</label>
+                    <input class="form-control" type="text" name="living_there" value="{{ old('living_there', '') }}">
+                    @if(hasErrorFor('living_there'))
+                    <span>
+                        {{ getErrorFor('living_there') }}
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--email--}}
+                <div class="form-group col-sm">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" value="{{ old('email', '') }}">
+                    @if(hasErrorFor('email'))
+                        <span>
+                            {{ getErrorFor('email') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--phone--}}
+                <div class="form-group col-sm">
+                    <label for="phone">Telefono</label>
+                    <input class="form-control" type="text" name="phone" value="{{ old('phone', '') }}">
+                    @if(hasErrorFor('phone'))
+                        <span>
+                            {{ getErrorFor('phone') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--cellphone--}}    
+                <div class="form-group col-sm">
+                    <label for="cellphone">Célular</label>
+                    <input class="form-control" type="text" name="cellphone" value="{{ old('cellphone', '') }}">
+                    @if(hasErrorFor('cellphone'))
+                        <span>
+                            {{ getErrorFor('cellphone') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--contact_schedule--}}    
+                <div class="form-group col-sm">
+                    <label for="contact_schedule">Horario de contacto</label>
+                    <input class="form-control" type="text" name="contact_schedule" value="{{ old('contact_schedule', '') }}">
+                    @if(hasErrorFor('contact_schedule'))
+                        <span>
+                            {{ getErrorFor('contact_schedule') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--rfc--}}    
+                <div class="form-group col-sm">
+                    <label for="rfc">RFC</label>
+                    <input class="form-control" type="text" name="rfc" value="{{ old('rfc', '') }}">
+                    @if(hasErrorFor('rfc'))
+                        <span>
+                            {{ getErrorFor('rfc') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--curp--}}    
+                <div class="form-group col-sm">
+                    <label for="curp">CURP</label>
+                    <input class="form-control" type="text" name="curp" value="{{ old('curp', '') }}">
+                    @if(hasErrorFor('curp'))
+                        <span>
+                            {{ getErrorFor('curp') }}
+                        </span>
+                    @endif
+                </div>
+            </div>    
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <button class="btn btn-secondary" type="submit">Guardar</button>
+            </div>
         </form>
     @endif
+
+    
 </div>
   
 @endsection

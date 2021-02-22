@@ -24,4 +24,18 @@ Route.group(()=>{
     Route.get('/client/:id', 'ClientController.redirectFormEdit');
     Route.post('/edit/:id', 'ClientController.edit').validator('EditClient');
     Route.get('/delete/:id', 'ClientController.delete');
+    Route.get('/getClient/:id', 'AllController.getClient');
 }).prefix('/clients').middleware(['auth']);
+//Jobs
+Route.group(()=>{
+    Route.get('/newJob/:client_id', 'JobController.redirectForm');
+    Route.post('/newJob/:client_id', 'JobController.create').validator('CreateJob');
+    Route.get('/redirect/edit/:id', 'JobController.redirectFormEdit');
+    Route.post('/edit/:id', 'JobController.edit').validator('CreateJob');
+}).prefix('/client/job').middleware(['auth']);
+
+
+
+
+/// API
+

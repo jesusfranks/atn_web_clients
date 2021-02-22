@@ -84,7 +84,7 @@ class ClientController {
         ]));
         await client.save();
         session.flash({ message: 'Se ha editado la info del cliente' });
-        return response.redirect('/clients');
+        return response.redirect('/clients/getClient/'+ client.id);
     }
 
     async delete({params, session, response}){
