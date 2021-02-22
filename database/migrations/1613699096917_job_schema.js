@@ -13,7 +13,7 @@ class JobSchema extends Schema {
       table.string('job', 90).notNullable()
       table.string('time_working', 90).notNullable()
       table.string('phone', 90).notNullable()
-      table.string('extension', 90).notNullable()
+      table.string('extension', 90)
       table.string('payroll', 90).notNullable()
       table.string('income', 90).notNullable()
       table.timestamps()

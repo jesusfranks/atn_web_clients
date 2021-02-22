@@ -8,7 +8,6 @@ class CreateJob {
       'job': 'required',
       'time_working': 'required',
       'phone': 'required',
-      'extension': 'required',
       'payroll': 'required',
       'income': 'required'
     }

@@ -16,7 +16,7 @@ ATN - Clients Info
     <div class="mx-auto" style="width: 50%; text-align: center;">
         <h1>Datos personales del cliente {{client.id}} </h3>
     </div>
-        <table class="table table-dark table-striped"">
+        <table class="table table-dark table-striped">
             
             <tbody>
                 <tr >
@@ -77,6 +77,54 @@ ATN - Clients Info
         <div class="mx-auto" style="width: 50%; text-align: center;">
             <a href="{{ route('ClientController.redirectFormEdit', { id: client.id }) }}" ><button class="btn btn-secondary btn-lg" >Editar</button></a>
         </div>
+        @if(adressC)
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <h3>Dirección personal del cliente {{client.id}} </h3>
+            </div>
+            <table class="table table-dark table-striped">
+                <tbody>
+                    <tr >
+                        <th scope="row">Calle</th>
+                        <td >{{ adressC.street }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Número</th>
+                        <td >{{ adressC.number }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Número interior</th>
+                        <td >{{ adressC.int_number }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Colonia</th>
+                        <td >{{ adressC.suburb }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Cruzamientos</th>
+                        <td >{{ adressC.crosses }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Código postal</th>
+                        <td >{{ adressC.postal_code }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Estado</th>
+                        <td >{{ adressC.state }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">País</th>
+                        <td >{{ adressC.contry }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <a href="{{ route('AdressController.redirectFormEdit', { id: adressC.id }) }}" ><button class="btn btn-secondary" >Editar dirección</button></a>
+            </div>
+        @else
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <a href="{{ route('AdressController.redirectFormC', { client_id: client.id }) }}" ><button class="btn btn-primary" >Agregar Dirección personal</button></a>
+            </div>
+        @endif
     @endif
     <br>
     @if(job)
@@ -125,9 +173,57 @@ ATN - Clients Info
         <div class="mx-auto" style="width: 50%; text-align: center;">
             <a href="{{ route('JobController.redirectFormEdit', { id: job.id }) }}" ><button class="btn btn-secondary btn-lg" >Editar</button></a>
         </div>
+        @if(adressJ)
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <h3>Dirección el empleo del cliente {{client.id}} </h3>
+            </div>
+                <table class="table table-dark table-striped">
+                    <tbody>
+                        <tr >
+                            <th scope="row">Calle</th>
+                            <td >{{ adressJ.street }}</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Número</th>
+                            <td >{{ adressJ.number }}</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Número interior</th>
+                            <td >{{ adressJ.int_number }}</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Colonia</th>
+                            <td >{{ adressJ.suburb }}</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Cruzamientos</th>
+                            <td >{{ adressJ.crosses }}</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Código postal</th>
+                            <td >{{ adressJ.postal_code }}</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Estado</th>
+                            <td >{{ adressJ.state }}</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">País</th>
+                            <td >{{ adressJ.contry }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mx-auto" style="width: 50%; text-align: center;">
+                    <a href="{{ route('AdressController.redirectFormEdit', { id: adressJ.id }) }}" ><button class="btn btn-secondary" >Editar dirección del empleo</button></a>
+                </div>
+        @else
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <a href="{{ route('AdressController.redirectFormJ', { job_id: job.id }) }}" ><button class="btn btn-danger " >Agregar Dirección de empleo</button></a>
+            </div>
+        @endif
     @else
         <div class="mx-auto" style="width: 50%; text-align: center;">
-            <a href="{{ route('JobController.redirectForm', { client_id: client.id }) }}" ><button class="btn btn-primary btn-lg" >Agregar Lugar de Trabajo</button></a>
+            <a href="{{ route('JobController.redirectForm', { client_id: client.id }) }}" ><button class="btn btn-primary btn-lg" >Agregar Lugar de empleo</button></a>
         </div>
     @endif
 
@@ -162,5 +258,17 @@ ATN - Clients Info
       'extension'
       'payroll'
       'income'
+
+    'client_id'
+      'job_id'
+      
+      'street'
+      'number'
+      'int_number
+      'suburb'
+      'crosses'
+      'state'
+      'contry'
+      'postal_code'
     
     -->

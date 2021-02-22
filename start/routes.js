@@ -33,7 +33,15 @@ Route.group(()=>{
     Route.get('/redirect/edit/:id', 'JobController.redirectFormEdit');
     Route.post('/edit/:id', 'JobController.edit').validator('CreateJob');
 }).prefix('/client/job').middleware(['auth']);
-
+//Aderesses
+Route.group(()=>{
+    Route.get('/newC/:client_id', 'AdressController.redirectFormC');
+    Route.post('/newC/:client_id', 'AdressController.createC').validator('CreateAdress');
+    Route.get('/newJ/:job_id', 'AdressController.redirectFormJ');
+    Route.post('/newJ/:job_id', 'AdressController.createJ').validator('CreateAdress');
+    Route.get('/redirect/edit/:id', 'AdressController.redirectFormEdit');
+    Route.post('/edit/:id', 'AdressController.edit').validator('CreateAdress');
+}).prefix('/client/adress').middleware(['auth']);
 
 
 

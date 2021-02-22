@@ -1,0 +1,322 @@
+@layout('layouts.main')
+
+@section('extracss')
+{{ style('index') }}
+@endsection
+
+@section('title')
+ATN - Clients form
+@endsection
+
+@section('main')
+
+<div class="container" style="margin-top: 3rem;">
+
+    @if(adress)
+    <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+            <h1>Editanto dirección</h1>
+    </div>
+    <form action="{{ route('AdressController.edit', {id: adress.id} ) }}" method="POST">
+        {{ csrfField() }}
+        <div class="row">
+            {{--Calle--}} 
+            <div class="form-group col-sm">
+                <label for="street">Lugar</label>
+                <input class="form-control" type="text" name="street" value="{{ adress.street}}">
+                @if(hasErrorFor('street'))
+                    <span>
+                        {{ getErrorFor('street') }}
+                    </span>
+                @endif
+            </div>
+            {{--Número--}} 
+            <div class="form-group col-sm">
+                <label for="number">Número</label>
+                <input class="form-control" type="text" name="number" value="{{ adress.number }}">
+                @if(hasErrorFor('number'))
+                    <span>
+                        {{ getErrorFor('number') }}
+                    </span>
+                @endif
+            </div>
+            {{--Número interior--}}    
+            <div class="form-group col-sm">
+                <label for="int_number">Número interior</label>
+                <input class="form-control" type="text" name="int_number" value="{{ adress.int_number }}">
+                @if(hasErrorFor('int_number'))
+                    <span>
+                        {{ getErrorFor('int_number') }}
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            {{--Colonia--}}    
+            <div class="form-group col-sm">
+                <label for="suburb">Colonia</label>
+                <input class="form-control" type="text" name="suburb" value="{{ adress.suburb }}">
+                @if(hasErrorFor('suburb'))
+                <span>
+                    {{ getErrorFor('suburb') }}
+                </span>
+            @endif
+            </div>                
+        </div>
+        <div class="row">
+            {{--Código postal--}}
+            <div class="form-group col-sm">
+                <label for="postal_code">Código postal</label>
+                <input class="form-control" type="text" name="postal_code" value="{{ adress.postal_code }}">
+                @if(hasErrorFor('postal_code'))
+                    <span>
+                        {{ getErrorFor('postal_code') }}
+                    </span>
+                @endif
+            </div>
+            {{--Cruzamientos--}}
+            <div class="form-group col-sm">
+                <label for="crosses">Cruzamientos</label>
+                <input class="form-control" type="crosses" name="crosses" value="{{ adress.crosses }}">
+                @if(hasErrorFor('crosses'))
+                    <span>
+                        {{ getErrorFor('crosses') }}
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            {{--Estado--}}    
+            <div class="form-group col-sm">
+                <label for="state">Estado</label>
+                <input class="form-control" type="text" name="state" value="{{ adress.state }}">
+                @if(hasErrorFor('state'))
+                    <span>
+                        {{ getErrorFor('state') }}
+                    </span>
+                @endif
+            </div>
+            
+            {{--País--}}    
+            <div class="form-group col-sm">
+                <label for="contry">País</label>
+                <input class="form-control" type="text" name="contry" value="{{ adress.contry }}">
+                @if(hasErrorFor('contry'))
+                    <span>
+                        {{ getErrorFor('contry') }}
+                    </span>
+                @endif
+            </div>
+        </div>    
+        <div class="mx-auto" style="width: 50%; text-align: center;">
+            <button class="btn btn-secondary" type="submit">Guardar</button>
+        </div>
+    </form>
+    
+@else
+
+    @if(client_id)
+        <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+                <h1>Agregar dirección personal</h1>
+        </div>
+        <form action="{{ route('AdressController.createC', {client_id: client_id} ) }}" method="POST">
+            {{ csrfField() }}
+            <div class="row">
+                {{--Calle--}} 
+                <div class="form-group col-sm">
+                    <label for="street">Lugar</label>
+                    <input class="form-control" type="text" name="street" value="{{ old('street', '') }}">
+                    @if(hasErrorFor('street'))
+                        <span>
+                            {{ getErrorFor('street') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Número--}} 
+                <div class="form-group col-sm">
+                    <label for="number">Número</label>
+                    <input class="form-control" type="text" name="number" value="{{ old('number', '') }}">
+                    @if(hasErrorFor('number'))
+                        <span>
+                            {{ getErrorFor('number') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Número interior--}}    
+                <div class="form-group col-sm">
+                    <label for="int_number">Número interior</label>
+                    <input class="form-control" type="text" name="int_number" value="{{ old('int_number', '') }}">
+                    @if(hasErrorFor('int_number'))
+                        <span>
+                            {{ getErrorFor('int_number') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--Colonia--}}    
+                <div class="form-group col-sm">
+                    <label for="suburb">Colonia</label>
+                    <input class="form-control" type="text" name="suburb" value="{{ old('suburb', '') }}">
+                    @if(hasErrorFor('suburb'))
+                    <span>
+                        {{ getErrorFor('suburb') }}
+                    </span>
+                @endif
+                </div>                
+            </div>
+            <div class="row">
+                {{--Código postal--}}
+                <div class="form-group col-sm">
+                    <label for="postal_code">Código postal</label>
+                    <input class="form-control" type="text" name="postal_code" value="{{ old('postal_code', '') }}">
+                    @if(hasErrorFor('postal_code'))
+                        <span>
+                            {{ getErrorFor('postal_code') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Cruzamientos--}}
+                <div class="form-group col-sm">
+                    <label for="crosses">Cruzamientos</label>
+                    <input class="form-control" type="crosses" name="crosses" value="{{ old('crosses', '') }}">
+                    @if(hasErrorFor('crosses'))
+                        <span>
+                            {{ getErrorFor('crosses') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--Estado--}}    
+                <div class="form-group col-sm">
+                    <label for="state">Estado</label>
+                    <input class="form-control" type="text" name="state" value="{{ old('state', '') }}">
+                    @if(hasErrorFor('state'))
+                        <span>
+                            {{ getErrorFor('state') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--País--}}    
+                <div class="form-group col-sm">
+                    <label for="contry">País</label>
+                    <input class="form-control" type="text" name="contry" value="{{ old('contry', '') }}">
+                    @if(hasErrorFor('contry'))
+                        <span>
+                            {{ getErrorFor('contry') }}
+                        </span>
+                    @endif
+                </div>
+            </div>    
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <button class="btn btn-secondary" type="submit">Guardar</button>
+            </div>
+        </form>      
+    @endif
+    @if(job_id)
+        <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+                <h1>Agregar dirección del empleo</h1>
+        </div>
+        <form action="{{ route('AdressController.createJ', {job_id: job_id} ) }}" method="POST">
+            {{ csrfField() }}
+            <div class="row">
+                {{--Calle--}} 
+                <div class="form-group col-sm">
+                    <label for="street">Lugar</label>
+                    <input class="form-control" type="text" name="street" value="{{ old('street', '') }}">
+                    @if(hasErrorFor('street'))
+                        <span>
+                            {{ getErrorFor('street') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Número--}} 
+                <div class="form-group col-sm">
+                    <label for="number">Número</label>
+                    <input class="form-control" type="text" name="number" value="{{ old('number', '') }}">
+                    @if(hasErrorFor('number'))
+                        <span>
+                            {{ getErrorFor('number') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Número interior--}}    
+                <div class="form-group col-sm">
+                    <label for="int_number">Número interior</label>
+                    <input class="form-control" type="text" name="int_number" value="{{ old('int_number', '') }}">
+                    @if(hasErrorFor('int_number'))
+                        <span>
+                            {{ getErrorFor('int_number') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--Colonia--}}    
+                <div class="form-group col-sm">
+                    <label for="suburb">Colonia</label>
+                    <input class="form-control" type="text" name="suburb" value="{{ old('suburb', '') }}">
+                    @if(hasErrorFor('suburb'))
+                    <span>
+                        {{ getErrorFor('suburb') }}
+                    </span>
+                @endif
+                </div>                
+            </div>
+            <div class="row">
+                {{--Código postal--}}
+                <div class="form-group col-sm">
+                    <label for="postal_code">Código postal</label>
+                    <input class="form-control" type="text" name="postal_code" value="{{ old('postal_code', '') }}">
+                    @if(hasErrorFor('postal_code'))
+                        <span>
+                            {{ getErrorFor('postal_code') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Cruzamientos--}}
+                <div class="form-group col-sm">
+                    <label for="crosses">Cruzamientos</label>
+                    <input class="form-control" type="crosses" name="crosses" value="{{ old('crosses', '') }}">
+                    @if(hasErrorFor('crosses'))
+                        <span>
+                            {{ getErrorFor('crosses') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--Estado--}}    
+                <div class="form-group col-sm">
+                    <label for="state">Estado</label>
+                    <input class="form-control" type="text" name="state" value="{{ old('state', '') }}">
+                    @if(hasErrorFor('state'))
+                        <span>
+                            {{ getErrorFor('state') }}
+                        </span>
+                    @endif
+                </div>
+                
+                {{--País--}}    
+                <div class="form-group col-sm">
+                    <label for="contry">País</label>
+                    <input class="form-control" type="text" name="contry" value="{{ old('contry', '') }}">
+                    @if(hasErrorFor('contry'))
+                        <span>
+                            {{ getErrorFor('contry') }}
+                        </span>
+                    @endif
+                </div>
+            </div>    
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <button class="btn btn-secondary" type="submit">Guardar</button>
+            </div>
+        </form>      
+    @endif
+
+@endif
+    
+</div>
+  
+@endsection

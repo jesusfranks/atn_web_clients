@@ -7,7 +7,7 @@ class AdressSchema extends Schema {
   up () {
     this.create('adresses', (table) => {
       table.increments()
-      table.integer('client_id').unsigned().notNullable().references('id').inTable('clients')
+      table.integer('client_id').unsigned().references('id').inTable('clients')
       table.integer('job_id').unsigned().references('id').inTable('jobs')
       table.string('street', 90).notNullable()
       table.string('number', 90).notNullable()
