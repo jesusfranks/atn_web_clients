@@ -1,7 +1,6 @@
 'use strict'
 
 const Client = use('App/Models/Client')
-const Job = use('App/Models/Job')
 
 class AllController {
     async getClient({ params, view }) {

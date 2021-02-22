@@ -42,6 +42,13 @@ Route.group(()=>{
     Route.get('/redirect/edit/:id', 'AdressController.redirectFormEdit');
     Route.post('/edit/:id', 'AdressController.edit').validator('CreateAdress');
 }).prefix('/client/adress').middleware(['auth']);
+//References
+Route.group(()=>{
+    Route.get('/newR/:client_id', 'ReferenceController.redirectForm');
+    Route.post('/newR/:client_id', 'ReferenceController.create').validator('CreateReference');
+    Route.get('/redirect/edit/:id', 'ReferenceController.redirectFormEdit');
+    Route.post('/edit/:id', 'ReferenceController.edit').validator('CreateReference');
+}).prefix('/client/references').middleware(['auth']);
 
 
 
