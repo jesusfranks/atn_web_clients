@@ -1,6 +1,8 @@
 'use strict'
 
 const Client = use('App/Models/Client')
+const Reference = use('App/Models/Reference')
+
 
 class ClientController {
 
@@ -89,6 +91,24 @@ class ClientController {
 
     async delete({params, session, response}){
         const client = await Client.find(params.id);
+        const job = await client.job().fetch();
+        const adressC = await client.adress().fetch();
+        const references = await client.references().fetch();
+        const referencias = references.toJSON()
+        if (job != null){
+            const adressJ = await job.adress().fetch();
+            if(adressJ != null)
+                await adressJ.delete();
+            await job.delete();
+        }
+        if(referencias.length > 0){
+            for (const reference of referencias) {
+                const refe = await Reference.find(reference.id)
+                await refe.delete();
+              }
+        }
+        if(adressC != null)
+            await adressC.delete();
         await client.delete();
         session.flash({ message: 'Se ha editado la info del cliente' });
         return response.redirect('/clients');
