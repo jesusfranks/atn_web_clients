@@ -227,48 +227,55 @@ ATN - Clients Info
         </div>
     @endif
 
+    @if(references.length > 0)
+        <div class="mx-auto" style="width: 50%; text-align: center;">
+            <h3>Referencias y conyuge </h3>
+        </div>
+        @each(reference in references)
+            <table class="table table-dark table-striped">
+                <tbody>
+                    <tr >
+                        <th scope="row">Nombre completo</th>
+                        <td >{{ reference.name }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Nacionalidad</th>
+                        <td >{{ reference.nacionality }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Edad</th>
+                        <td >{{ reference.birth }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Teléfono</th>
+                        <td >{{ reference.phone }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Relación</th>
+                        <td >{{ reference.relationship }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Tiempo de conocerse</th>
+                        <td >{{ reference.known }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <a href="{{ route('ReferenceController.redirectFormEdit', { id: reference.id }) }}" ><button class="btn btn-secondary" >Editar referencia</button></a>
+            </div>
+        @endeach
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <a href="{{ route('ReferenceController.redirectForm', { client_id: client.id }) }}" ><button class="btn btn-primary" >Agregar referencia personal</button></a>
+            </div>
+    @else
+        <div class="mx-auto" style="width: 50%; text-align: center;">
+            <a href="{{ route('ReferenceController.redirectForm', { client_id: client.id }) }}" ><button class="btn btn-primary btn-lg" >Agregar conyuge o referencia</button></a>
+        </div>
+    @endif
+
 
 </div>
 
 
 
 @endsection
-
-
-<!-- 'name',
-    'first_last_name',
-    'sec_last_name',
-    'civil_status',
-    'nacionality',
-    'birth',
-    'type_housing',
-    'living_there',
-    'email',
-    'cellphone',
-    'phone',
-    'contact_schedule',
-    'rfc',
-    'curp' 
-
-    'place'
-      'occupation'
-      'job'
-      'time_working'
-      'phone'
-      'extension'
-      'payroll'
-      'income'
-
-    'client_id'
-      'job_id'
-      
-      'street'
-      'number'
-      'int_number
-      'suburb'
-      'crosses'
-      'state'
-      'contry'
-      'postal_code'
-    
-    -->
