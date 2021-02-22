@@ -8,8 +8,12 @@ class AllController {
         const client = await Client.find(params.id);
         const job = await client.job().fetch();
         const adressC = await client.adress().fetch();
-        const adressJ = await job.adress().fetch();
-        return view.render('pages.clientInfo', { client: client, job: job, adressC: adressC, adressJ: adressJ });
+        if (job != null){
+            const adressJ = await job.adress().fetch();
+            return view.render('pages.clientInfo', { client: client, job: job, adressC: adressC, adressJ: adressJ });
+        }else{
+            return view.render('pages.clientInfo', { client: client, job: job, adressC: adressC });
+        }
     }
 }
 
