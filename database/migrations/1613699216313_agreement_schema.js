@@ -8,7 +8,6 @@ class AgreementSchema extends Schema {
     this.create('agreements', (table) => {
       table.increments()
       table.string('factor', 10).notNullable()
-      table.timestamps()
     })
   }
 
