@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-ATN - Clients 
+ATN - Creditos 
 @endsection
 
 @section('main')
@@ -13,7 +13,7 @@ ATN - Clients
 <div class="container" style="margin-top: 3rem;">
     <div class="mx-auto" style="width: 50%; text-align: center;">
         <h1>Lista de clientes</h1>
-        <a style="" href="/clients/newClient" ><button class="btn btn-secondary btn-lg" >Nuevo Cliente</button></a>
+        <h2>Información de créditos</h2>
     </div>
     @if(clients)
         <table class="table">
@@ -23,19 +23,15 @@ ATN - Clients
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">Contacto</th>
-                    <th scope="col">Hora de contacto</th>
-                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @each(client in clients)
-                    <tr onclick="location.href='{{ route('AllController.getClient', { id: client.id }) }}'" style="cursor:pointer">
+                    <tr onclick="location.href='{{ route('AllController.getCredit', { id: client.id }) }}'" style="cursor:pointer">
                         <th scope="row">{{ client.id }}</th>
                         <td >{{ client.name }}</td>
                         <td>{{ client.first_last_name }} {{ client.sec_last_name }}</td>
                         <td>{{ client.email }} | {{ client.cellphone }}</td>
-                        <td>{{ client.contact_schedule}}</td>
-                        <td><a class="col-md-2" href="{{ route('ClientController.delete', { id: client.id }) }}"><button class="btn btn-danger">Eliminar</button></a></td>
                     </tr>
                 @endeach
             </tbody>

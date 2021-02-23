@@ -11,7 +11,6 @@ class ProductSchema extends Schema {
       table.string('promotion', 80).notNullable()
       table.string('cat', 80).notNullable()
       table.string('tasa', 80).notNullable()
-      table.timestamps()
     })
   }
 

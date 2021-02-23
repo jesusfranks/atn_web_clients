@@ -122,7 +122,7 @@ class AgreementSeeder {
         {
           "id" : "14",
           "agreement_id" : "3",
-          "promotion" : "AN031248",
+          "promotion" : "AN0348",
           "cat" : "92.6",
           "tasa" : "77.07"
         },

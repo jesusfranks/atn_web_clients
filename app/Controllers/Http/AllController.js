@@ -1,6 +1,7 @@
 'use strict'
 
 const Client = use('App/Models/Client')
+const Credit = use('App/Models/Credit')
 
 class AllController {
     async getClient({ params, view }) {
@@ -14,6 +15,11 @@ class AllController {
         }else{
             return view.render('pages.clientInfo', { client: client, job: job, adressC: adressC, references: references.toJSON() });
         }
+    }
+    async getCredit({ params, view }) {
+        const client = await Client.find(params.id);
+        const credit  = await client.credit().fetch();
+        return view.render('pages.creditClientInfo', { client: client, credit: credit });
     }
 }
 

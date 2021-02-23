@@ -49,6 +49,17 @@ Route.group(()=>{
     Route.get('/redirect/edit/:id', 'ReferenceController.redirectFormEdit');
     Route.post('/edit/:id', 'ReferenceController.edit').validator('CreateReference');
 }).prefix('/client/references').middleware(['auth']);
+/////////////////////////////////////////////////////////////////////////////////////////////
+//Credits
+Route.group(()=>{
+    Route.get('/', 'CreditController.index');
+    Route.get('/newCredit/:client_id', 'CreditController.redirectForm');
+    Route.post('/newCredit/:client_id', 'CreditController.create').validator('CreateCredit');
+    //Route.get('/credit/:id', 'CreditController.redirectFormEdit');
+    //Route.post('/edit/:id', 'CreditController.edit').validator('CreateCredit');
+    //Route.get('/delete/:id', 'CreditController.delete');
+    Route.get('/getCredit/:id', 'AllController.getCredit');
+}).prefix('/credits').middleware(['auth']);
 
 
 

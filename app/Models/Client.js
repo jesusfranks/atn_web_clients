@@ -16,8 +16,8 @@ class Client extends Model {
     bank() {
         return this.hasOne('App/Models/Bank')
     }
-    credits() {
-        return this.hasMany('App/Models/Credit')
+    credit() {
+        return this.hasOne('App/Models/Credit')
     }
 }
 
