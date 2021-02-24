@@ -2,6 +2,7 @@
 
 const Client = use('App/Models/Client')
 const Reference = use('App/Models/Reference')
+const Database = use('Database')
 
 
 class ClientController {
@@ -14,6 +15,19 @@ class ClientController {
         } else {
             const clients = await Client.all();
             return view.render('pages.clientsPage', { clients: clients.toJSON() })
+        }
+    }
+    async indexSearch({ request, auth, view }) {
+        const user = await auth.getUser();
+        const { search } = request.all();
+        if (user.promotor) {
+            const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE) AND clients.user_id = ${user.id}`);
+            const clients = JSON.parse(JSON.stringify(cliensss))
+            return view.render('pages.clientsPage', { clients: clients[0] })
+        } else {
+            const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE)`);
+            const clients = JSON.parse(JSON.stringify(cliensss))
+            return view.render('pages.clientsPage', { clients: clients[0] })
         }
     }
 

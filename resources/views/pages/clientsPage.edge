@@ -12,8 +12,20 @@ ATN - Clients
 
 <div class="container" style="margin-top: 3rem;">
     <div class="mx-auto" style="width: 50%; text-align: center;">
+        <br>
+        <form action="{{ route('ClientController.indexSearch', {id: client.id}) }}" method="POST">
+            {{ csrfField() }}
+            <div class="row">
+                <div class="form-group col-sm" >                  
+                    <input class="form-control" type="search" name="search" id="search" placeholder="Buscar por nombre...">
+                    <button class="btn btn-secondary" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
         <h1>Lista de clientes</h1>
+        <br>
         <a style="" href="/clients/newClient" ><button class="btn btn-secondary btn-lg" >Nuevo Cliente</button></a>
+        <br>
     </div>
     @if(clients)
         <table class="table">

@@ -19,6 +19,7 @@ Route.get('/getuser', 'UserController.getUser').middleware('auth');
 //Clientes
 Route.group(()=>{
     Route.get('/', 'ClientController.index');
+    Route.post('/', 'ClientController.indexSearch');
     Route.get('/newClient', 'ClientController.redirectForm');
     Route.post('/newClient', 'ClientController.create').validator('CreateClient');
     Route.get('/client/:id', 'ClientController.redirectFormEdit');
