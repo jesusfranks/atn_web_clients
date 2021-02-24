@@ -273,6 +273,42 @@ ATN - Clients Info
         </div>
     @endif
 
+    @if(bank)
+        <div class="mx-auto" style="width: 50%; text-align: center;">
+            <h3>Información bancaria</h3>
+        </div>
+        <table class="table table-dark table-striped">
+            <tbody>
+                <tr >
+                    <th scope="row">CLABE</th>
+                    <td >{{ bank.clabe }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Banco</th>
+                    <td >{{ bank.bank }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Arrangement</th>
+                    <td >{{ bank.arrangement }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Cuenta</th>
+                    <td >{{ bank.account }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Fecha de pago</th>
+                    <td >{{ bank.payment_date }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mx-auto" style="width: 50%; text-align: center;">
+            <a href="{{ route('BankController.redirectFormEdit', { id: bank.id }) }}" ><button class="btn btn-secondary" >Editar info Bancaria</button></a>
+        </div>
+    @else
+        <div class="mx-auto" style="width: 50%; text-align: center;">
+            <a href="{{ route('BankController.redirectForm', { client_id: client.id }) }}" ><button class="btn btn-primary btn-lg" >Agregar info Bancaria</button></a>
+        </div>
+    @endif
 
 </div>
 

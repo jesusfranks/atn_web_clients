@@ -1,17 +1,12 @@
 'use strict'
 
-class CreateCredit {
+class CreateBank {
   get rules() {
     return {
-      'promotor_code': 'required',
-      'promotor_name': 'required',
-      'branch_office': 'required',
-      'amount': 'required',
-      'disposing': 'required',
-      'debt': 'required',
-      'date': 'required',
-      'destination': 'required',
-      'periodicity': 'required'
+      'clabe': 'required',
+      'bank': 'required',
+      'arrangement': 'required',
+      'account': 'required'
     }
   }
 
@@ -30,4 +25,4 @@ class CreateCredit {
   }
 }
 
-module.exports = CreateCredit
+module.exports = CreateBank

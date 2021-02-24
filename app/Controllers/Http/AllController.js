@@ -7,13 +7,14 @@ class AllController {
     async getClient({ params, view }) {
         const client = await Client.find(params.id);
         const job = await client.job().fetch();
+        const bank = await client.bank().fetch();
         const adressC = await client.adress().fetch();
         const references = await client.references().fetch();
         if (job != null){
             const adressJ = await job.adress().fetch();
-            return view.render('pages.clientInfo', { client: client, job: job, adressC: adressC, adressJ: adressJ, references: references.toJSON() });
+            return view.render('pages.clientInfo', { client: client, job: job, adressC: adressC, adressJ: adressJ, references: references.toJSON(), bank: bank });
         }else{
-            return view.render('pages.clientInfo', { client: client, job: job, adressC: adressC, references: references.toJSON() });
+            return view.render('pages.clientInfo', { client: client, job: job, adressC: adressC, references: references.toJSON(), bank: bank });
         }
     }
     async getCredit({ params, view }) {

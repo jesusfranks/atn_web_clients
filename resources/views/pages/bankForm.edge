@@ -1,0 +1,154 @@
+@layout('layouts.main')
+
+@section('extracss')
+{{ style('index') }}
+@endsection
+
+@section('title')
+ATN - Bank form
+@endsection
+
+@section('main')
+
+<div class="container" style="margin-top: 3rem;">
+
+    @if(bank)
+        <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+            <h1>Editanto info bancaria del cliente: {{ bank.client_id }}</h1>
+        </div>
+            
+        <form action="{{ route('BankController.edit', {id: bank.id} ) }}" method="POST">
+            {{ csrfField() }}
+            <div class="row">
+                {{--clabe--}} 
+                <div class="form-group col-sm">
+                    <label for="clabe">CLABE</label>
+                    <input class="form-control" type="text" name="clabe" value="{{ bank.clabe}}">
+                    @if(hasErrorFor('clabe'))
+                        <span>
+                            {{ getErrorFor('clabe') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Banco--}} 
+                <div class="form-group col-sm">
+                    <label for="bank">Banco</label>
+                    <input class="form-control" type="text" name="bank" value="{{ bank.bank }}">
+                    @if(hasErrorFor('bank'))
+                        <span>
+                            {{ getErrorFor('bank') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--arrangement--}}    
+                <div class="form-group col-sm">
+                    <label for="arrangement">arrangement</label>
+                    <input class="form-control" type="text" name="arrangement" value="{{ bank.arrangement }}">
+                    @if(hasErrorFor('arrangement'))
+                        <span>
+                            {{ getErrorFor('arrangement') }}
+                        </span>
+                    @endif
+                </div>
+                {{--account--}}    
+                <div class="form-group col-sm">
+                    <label for="account">Cuenta</label>
+                    <input class="form-control" type="text" name="account" value="{{ bank.account }}">
+                    @if(hasErrorFor('account'))
+                    <span>
+                        {{ getErrorFor('account') }}
+                    </span>
+                @endif
+                </div>                
+                {{--fecha de pago--}}
+                <div class="form-group col-sm">
+                    <label for="payment_date">Telefono</label>
+                    <input class="form-control" type="text" name="payment_date" value="{{ bank.payment_date }}">
+                    @if(hasErrorFor('payment_date'))
+                        <span>
+                            {{ getErrorFor('payment_date') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+              
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <button class="btn btn-secondary" type="submit">Guardar</button>
+            </div>
+        </form>
+        
+    @else
+        <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+            <h1>Agregar info bancaria</h1>
+        </div>
+
+        <form action="{{ route('BankController.create', {client_id: client_id} ) }}" method="POST">
+            {{ csrfField() }}
+            
+            <div class="row">
+                {{--clabe--}} 
+                <div class="form-group col-sm">
+                    <label for="clabe">CLABE</label>
+                    <input class="form-control" type="text" name="clabe" value="{{ old('clabe', '')}}">
+                    @if(hasErrorFor('clabe'))
+                        <span>
+                            {{ getErrorFor('clabe') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Banco--}} 
+                <div class="form-group col-sm">
+                    <label for="bank">Banco</label>
+                    <input class="form-control" type="text" name="bank" value="{{ old('bank', '') }}">
+                    @if(hasErrorFor('bank'))
+                        <span>
+                            {{ getErrorFor('bank') }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--arrangement--}}    
+                <div class="form-group col-sm">
+                    <label for="arrangement">Arrangement</label>
+                    <input class="form-control" type="text" name="arrangement" value="{{ old('arrangement', '') }}">
+                    @if(hasErrorFor('arrangement'))
+                        <span>
+                            {{ getErrorFor('arrangement') }}
+                        </span>
+                    @endif
+                </div>
+                {{--account--}}    
+                <div class="form-group col-sm">
+                    <label for="account">Cuenta</label>
+                    <input class="form-control" type="text" name="account" value="{{ old('account', '') }}">
+                    @if(hasErrorFor('account'))
+                    <span>
+                        {{ getErrorFor('account') }}
+                    </span>
+                @endif
+                </div>                
+                {{--fecha de pago--}}
+                <div class="form-group col-sm">
+                    <label for="payment_date">Telefono</label>
+                    <input class="form-control" type="text" name="payment_date" value="{{ old('payment_date', '') }}">
+                    @if(hasErrorFor('payment_date'))
+                        <span>
+                            {{ getErrorFor('payment_date') }}
+                        </span>
+                    @endif
+                </div>
+            </div>   
+                 
+            <div class="mx-auto" style="width: 50%; text-align: center;">
+                <button class="btn btn-secondary" type="submit">Guardar</button>
+            </div>
+        </form>
+    @endif
+
+    
+</div>
+  
+@endsection

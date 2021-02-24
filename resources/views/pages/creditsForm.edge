@@ -12,11 +12,11 @@ ATN - Clients form
 
 <div class="container" style="margin-top: 3rem;">
 
-    @if(client)
+    @if(credit)
         <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
-            <h1>Nuevo Crédito para el cliente: {{ client.id }}</h1>
+            <h1>Editar Crédito</h1>
         </div>
-        <form action="{{ route('CreditController.create', { client_id: client.id } ) }}" method="POST">
+        <form action="{{ route('CreditController.edit', { id: credit.id } ) }}" method="POST">
             {{ csrfField() }}
             @if(user)
                 <div class="row">
@@ -46,7 +46,7 @@ ATN - Clients form
                     {{--Promotor--}} 
                     <div class="form-group col-sm">
                         <label for="promotor_code">Código de promotor</label>
-                        <input class="form-control" type="text" name="promotor_code" value="{{ old('promotor_code', '') }}">
+                        <input class="form-control" type="text" name="promotor_code" value="{{ credit.promotor_code }}">
                         @if(hasErrorFor('promotor_code'))
                             <span>
                                 {{ getErrorFor('promotor_code') }}
@@ -56,7 +56,7 @@ ATN - Clients form
                     {{--Promotor nombre--}} 
                     <div class="form-group col-sm">
                         <label for="promotor_name">Nombre del promotor</label>
-                        <input class="form-control" type="text" name="promotor_name" value="{{ old('promotor_name', '') }}">
+                        <input class="form-control" type="text" name="promotor_name" value="{{ credit.promotor_name }}">
                         @if(hasErrorFor('promotor_name'))
                             <span>
                                 {{ getErrorFor('promotor_name') }}
@@ -65,30 +65,12 @@ ATN - Clients form
                     </div>
                 </div>
             @endif
-            {{--product_id no esta bien hecho el factor ni se usa--}} 
-            <div class="row">
-                <div class="form-group col-sm">
-                    <label for="agreement">Convenio</label>
-                    <select name="agreement" id="agreement"class="form-control">
-                        @each(agreement in agreements)
-                            <option value="{{ agreement.id }}">{{ agreement.factor }}</option>
-                        @endeach
-                    </select>
-                </div>
-                <div class="form-group col-sm">
-                    <label for="product">Producto</label>
-                    <select name="product" id="product"class="form-control">
-                        @each(product in products)
-                            <option value="{{ product.id }}">{{ product.promotion }}</option>
-                        @endeach
-                    </select>
-                </div>
-            </div>
+            {{--Aqui va el editar de agreement y product--}}
             <div class="row">
                 {{--Sucursal--}} 
                 <div class="form-group col-sm">
                     <label for="branch_office">Sucursal</label>
-                    <input class="form-control" type="text" name="branch_office" value="{{ old('branch_office', 'ATN000') }}">
+                    <input class="form-control" type="text" name="branch_office" value="{{ credit.branch_office }}">
                     @if(hasErrorFor('branch_office'))
                         <span>
                             {{ getErrorFor('branch_office') }}
@@ -98,7 +80,7 @@ ATN - Clients form
                 {{--Cantidad--}} 
                 <div class="form-group col-sm">
                     <label for="amount">Cantidad</label>
-                    <input class="form-control" type="text" name="amount" value="{{ old('amount', '') }}">
+                    <input class="form-control" type="text" name="amount" value="{{ credit.amount }}">
                     @if(hasErrorFor('amount'))
                         <span>
                             {{ getErrorFor('amount') }}
@@ -108,7 +90,7 @@ ATN - Clients form
                 {{--Fecha--}} 
                 <div class="form-group col-sm">
                     <label for="date">Fecha</label>
-                    <input class="form-control" type="text" name="date" value="{{ old('date', '') }}">
+                    <input class="form-control" type="text" name="date" value="{{ credit.date }}">
                     @if(hasErrorFor('date'))
                         <span>
                             {{ getErrorFor('date') }}
@@ -121,17 +103,32 @@ ATN - Clients form
                 <div class="form-group col-sm">
                     <label for="debt">Tipo de deuda</label>
                     <select class="form-control" id="debt" name="debt">
+                        @if(credit.debt == 'Propia')
                         <option value="Propia" selected>Propia</option>
                         <option value="Tercero">Tercero</option>                         
+                    @else
+                        <option value="Propia">Propia</option>
+                        <option value="Tercero" selected>Tercero</option>
+                    @endif                        
                     </select>
                 </div>         
                 {{--disposing--}}
                 <div class="form-group col-sm">
                     <label for="disposing">Forma de disposición</label>
                     <select class="form-control" id="disposing" name="disposing">
-                        <option value="Cheque" >Cheque</option>
-                        <option value="Transferencia" selected>Transferencia</option>
-                        <option value="Orden de pago" >Orden de pago</option>
+                        @if(credit.disposing == 'Cheque')
+                            <option value="Cheque" selected>Cheque</option>
+                            <option value="Transferencia" >Transferencia</option>
+                            <option value="Orden de pago" >Orden de pago</option>
+                        @elseif(credit.disposing == 'Transferencia')
+                            <option value="Cheque" >Cheque</option>
+                            <option value="Transferencia" selected>Transferencia</option>
+                            <option value="Orden de pago" >Orden de pago</option>
+                        @else
+                            <option value="Cheque" >Cheque</option>
+                            <option value="Transferencia" >Transferencia</option>
+                            <option value="Orden de pago" selected>Orden de pago</option>
+                        @endif
                     </select>
                     <br>
                 </div>
@@ -139,27 +136,199 @@ ATN - Clients form
                 <div class="form-group col-sm">
                     <label for="destination">Destino del crédito</label>
                     <select class="form-control" id="destination" name="destination">
-                        <option value="Pago de deuda" selected>Pago de deuda</option>
-                        <option value="Remodelación">Remodelación</option>
-                        <option value="Educación">Educación</option>
+                        @if(credit.destination == 'Pago de deuda')
+                            <option value="Pago de deuda" selected>Pago de deuda</option>
+                            <option value="Remodelación">Remodelación</option>
+                            <option value="Educación">Educación</option>
+                        @elseif(credit.destination == 'Remodelación')
+                            <option value="Pago de deuda">Pago de deuda</option>
+                            <option value="Remodelación" selected>Remodelación</option>
+                            <option value="Educación">Educación</option>
+                        @else
+                            <option value="Pago de deuda" >Pago de deuda</option>
+                            <option value="Remodelación">Remodelación</option>
+                            <option value="Educación" selected>Educación</option>
+                        @endif
                     </select>
                 </div>
                 {{--periodicity--}}
                 <div class="form-group col-sm">
                     <label for="periodicity">Periodicidad</label>
                     <select class="form-control" id="periodicity" name="periodicity">
-                        <option value="Mensual">Mensual</option>
-                        <option value="Quincenal" selected >Quincenal</option>
-                        <option value="Catorcenal">Catorcenal</option>
+                        @if(credit.periodicity == 'Mensual')
+                            <option value="Mensual" selected>Mensual</option>
+                            <option value="Quincenal" >Quincenal</option>
+                            <option value="Catorcenal">Catorcenal</option>
+                        @elseif(credit.periodicity == 'Quincenal')
+                            <option value="Mensual">Mensual</option>
+                            <option value="Quincenal" selected>Quincenal</option>
+                            <option value="Catorcenal">Catorcenal</option>
+                        @else
+                            <option value="Mensual">Mensual</option>
+                            <option value="Quincenal" >Quincenal</option>
+                            <option value="Catorcenal" selected>Catorcenal</option>
+                            @endif
                     </select>
                 </div>
             </div>
-           
+        
             </div>    
             <div class="mx-auto" style="width: 50%; text-align: center;">
                 <button class="btn btn-secondary" type="submit">Guardar</button>
             </div>
-        </form>
+        </form>      
+    @else
+
+        @if(client)
+            <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
+                <h1>Nuevo Crédito para el cliente: {{ client.id }}</h1>
+            </div>
+            <form action="{{ route('CreditController.create', { client_id: client.id } ) }}" method="POST">
+                {{ csrfField() }}
+                @if(user)
+                    <div class="row">
+                        {{--Promotor--}} 
+                        <div class="form-group col-sm">
+                            <label for="promotor_code">Código de promotor</label>
+                            <input class="form-control" type="text" name="promotor_code" value="{{ user.code }}">
+                            @if(hasErrorFor('promotor_code'))
+                                <span>
+                                    {{ getErrorFor('promotor_code') }}
+                                </span>
+                            @endif
+                        </div>
+                        {{--Promotor nombre--}} 
+                        <div class="form-group col-sm">
+                            <label for="promotor_name">Nombre del promotor</label>
+                            <input class="form-control" type="text" name="promotor_name" value="{{ user.name + ' ' + user.first_last_name + ' ' + user.sec_last_name }}">
+                            @if(hasErrorFor('promotor_name'))
+                                <span>
+                                    {{ getErrorFor('promotor_name') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                @else
+                    <div class="row">
+                        {{--Promotor--}} 
+                        <div class="form-group col-sm">
+                            <label for="promotor_code">Código de promotor</label>
+                            <input class="form-control" type="text" name="promotor_code" value="{{ old('promotor_code', '') }}">
+                            @if(hasErrorFor('promotor_code'))
+                                <span>
+                                    {{ getErrorFor('promotor_code') }}
+                                </span>
+                            @endif
+                        </div>
+                        {{--Promotor nombre--}} 
+                        <div class="form-group col-sm">
+                            <label for="promotor_name">Nombre del promotor</label>
+                            <input class="form-control" type="text" name="promotor_name" value="{{ old('promotor_name', '') }}">
+                            @if(hasErrorFor('promotor_name'))
+                                <span>
+                                    {{ getErrorFor('promotor_name') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                @endif
+                {{--product_id no esta bien hecho el factor ni se usa--}} 
+                <div class="row">
+                    <div class="form-group col-sm">
+                        <label for="agreement">Convenio</label>
+                        <select onchange="val()" name="agreement" id="agreement"class="form-control">
+                            @each(agreement in agreements)
+                                <option value="{{ agreement.id }}">{{ agreement.factor }}</option>
+                            @endeach
+                        </select>
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="product">Producto</label>
+                        <select name="product" id="product"class="form-control">
+                            @each(product in products)
+                                <option value="{{ product.id }}">{{ product.promotion }}</option> 
+                            @endeach
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    {{--Sucursal--}} 
+                    <div class="form-group col-sm">
+                        <label for="branch_office">Sucursal</label>
+                        <input class="form-control" type="text" name="branch_office" value="{{ old('branch_office', 'ATN000') }}">
+                        @if(hasErrorFor('branch_office'))
+                            <span>
+                                {{ getErrorFor('branch_office') }}
+                            </span>
+                        @endif
+                    </div>
+                    {{--Cantidad--}} 
+                    <div class="form-group col-sm">
+                        <label for="amount">Cantidad</label>
+                        <input class="form-control" type="text" name="amount" value="{{ old('amount', '') }}">
+                        @if(hasErrorFor('amount'))
+                            <span>
+                                {{ getErrorFor('amount') }}
+                            </span>
+                        @endif
+                    </div>
+                    {{--Fecha--}} 
+                    <div class="form-group col-sm">
+                        <label for="date">Fecha</label>
+                        <input class="form-control" type="text" name="date" value="{{ old('date', '') }}">
+                        @if(hasErrorFor('date'))
+                            <span>
+                                {{ getErrorFor('date') }}
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    {{--debt--}}
+                    <div class="form-group col-sm">
+                        <label for="debt">Tipo de deuda</label>
+                        <select class="form-control" id="debt" name="debt">
+                            <option value="Propia" selected>Propia</option>
+                            <option value="Tercero">Tercero</option>                         
+                        </select>
+                    </div>         
+                    {{--disposing--}}
+                    <div class="form-group col-sm">
+                        <label for="disposing">Forma de disposición</label>
+                        <select class="form-control" id="disposing" name="disposing">
+                            <option value="Cheque" >Cheque</option>
+                            <option value="Transferencia" selected>Transferencia</option>
+                            <option value="Orden de pago" >Orden de pago</option>
+                        </select>
+                        <br>
+                    </div>
+                    {{--destination--}}
+                    <div class="form-group col-sm">
+                        <label for="destination">Destino del crédito</label>
+                        <select class="form-control" id="destination" name="destination">
+                            <option value="Pago de deuda" selected>Pago de deuda</option>
+                            <option value="Remodelación">Remodelación</option>
+                            <option value="Educación">Educación</option>
+                        </select>
+                    </div>
+                    {{--periodicity--}}
+                    <div class="form-group col-sm">
+                        <label for="periodicity">Periodicidad</label>
+                        <select class="form-control" id="periodicity" name="periodicity">
+                            <option value="Mensual">Mensual</option>
+                            <option value="Quincenal" selected >Quincenal</option>
+                            <option value="Catorcenal">Catorcenal</option>
+                        </select>
+                    </div>
+                </div>
+            
+                </div>    
+                <div class="mx-auto" style="width: 50%; text-align: center;">
+                    <button class="btn btn-secondary" type="submit">Guardar</button>
+                </div>
+            </form>
+        @endif
+      
     @endif
 
     

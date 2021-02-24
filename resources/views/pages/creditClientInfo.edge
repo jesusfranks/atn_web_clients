@@ -122,10 +122,18 @@ ATN - Credit Info
                     <td >{{ credit.periodicity }}</td>
                 </tr>
             </tbody>
-        </table>     
+        </table>
+        <div class="mx-auto" style="width: 50%; text-align: center;">
+            <a href="{{ route('CreditController.redirectFormEdit', { id: credit.id }) }}" ><button class="btn btn-secondary btn-lg" >Editar crédito</button></a>
+        </div>
     @else
         <div class="mx-auto" style="width: 50%; text-align: center;">
-            <a href="{{ route('CreditController.redirectForm', { client_id: client.id }) }}" ><button class="btn btn-danger btn-lg" >Agregar crédito</button></a>
+            <a href="{{ route('CreditController.redirectForm', { client_id: client.id }) }}" ><button class="btn btn-primary btn-lg" >Agregar crédito</button></a>
+        </div>
+    @endif
+    @if(credit)
+        <div style="width: 20%;">
+            <a href="{{ route('CreditController.delete', { id: credit.id }) }}" ><button class="btn btn-danger btn-sm" >Eliminar crédito</button></a>
         </div>
     @endif
 </div>
