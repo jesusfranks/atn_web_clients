@@ -16,6 +16,8 @@ Route.on('/signup').render('auth.signup');
 Route.post('/signup', 'UserController.create').validator('CreateUser');
 // info de usuario activo
 Route.get('/getuser', 'UserController.getUser').middleware('auth');
+//getClientJSON
+Route.get('getClientJSON/:id', 'AllController.getClientJSON').middleware(['auth']);
 //Clientes
 Route.group(()=>{
     Route.get('/', 'ClientController.index');
@@ -57,7 +59,7 @@ Route.group(()=>{
     Route.get('/redirect/edit/:id', 'BankController.redirectFormEdit');
     Route.post('/edit/:id', 'BankController.edit').validator('CreateBank');
 }).prefix('/client/bank').middleware(['auth']);
-/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////
 //Credits
 Route.group(()=>{
     Route.get('/', 'CreditController.index');
@@ -69,7 +71,4 @@ Route.group(()=>{
     Route.get('/getCredit/:id', 'AllController.getCredit');
 }).prefix('/credits').middleware(['auth']);
 
-
-
-/// API
 

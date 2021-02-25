@@ -22,7 +22,7 @@ ATN - Creditos
                     <th scope="col">ID</th>
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
-                    <th scope="col">Contacto</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +32,7 @@ ATN - Creditos
                         <td >{{ client.name }}</td>
                         <td>{{ client.first_last_name }} {{ client.sec_last_name }}</td>
                         <td>{{ client.email }} | {{ client.cellphone }}</td>
+                        <td><a class="col-md-2" href="{{ route('AllController.getClientJSON', { id: client.id }) }}"><button class="btn btn-secondary">JSON</button></a></td>
                     </tr>
                 @endeach
             </tbody>
