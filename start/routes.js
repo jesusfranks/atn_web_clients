@@ -17,7 +17,7 @@ Route.post('/signup', 'UserController.create').validator('CreateUser');
 // info de usuario activo
 Route.get('/getuser', 'UserController.getUser').middleware('auth');
 //getClientJSON
-Route.get('getClientJSON/:id', 'AllController.getClientJSON').middleware(['auth']);
+Route.get('getClientJSON/:id', 'AllController.getClientJSON')
 //Clientes
 Route.group(()=>{
     Route.get('/', 'ClientController.index');
@@ -70,5 +70,3 @@ Route.group(()=>{
     Route.get('/delete/:id', 'CreditController.delete');
     Route.get('/getCredit/:id', 'AllController.getCredit');
 }).prefix('/credits').middleware(['auth']);
-
-
