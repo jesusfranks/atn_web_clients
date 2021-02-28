@@ -43,7 +43,7 @@ ATN - Clients
                 @each(client in clients)
                     <tr onclick="location.href='{{ route('AllController.getClient', { id: client.id }) }}'" style="cursor:pointer">
                         <th scope="row">{{ client.id }}</th>
-                        <td >{{ client.name }}</td>
+                        <td >{{ client.name }} {{ client.name2 }}</td>
                         <td>{{ client.first_last_name }} {{ client.sec_last_name }}</td>
                         <td>{{ client.email }} | {{ client.cellphone }}</td>
                         <td>{{ client.contact_schedule}}</td>

@@ -29,7 +29,7 @@ ATN - Creditos
                 @each(client in clients)
                     <tr onclick="location.href='{{ route('AllController.getCredit', { id: client.id }) }}'" style="cursor:pointer">
                         <th scope="row">{{ client.id }}</th>
-                        <td >{{ client.name }}</td>
+                        <td >{{ client.name }} {{ client.name2 }}</td>
                         <td>{{ client.first_last_name }} {{ client.sec_last_name }}</td>
                         <td>{{ client.email }} | {{ client.cellphone }}</td>
                         <td><a class="col-md-2" href="http://192.168.100.8:8080/controller/reportePDF?cliente={{client.id}}"><button class="btn btn-secondary">PDF</button></a></td>

@@ -21,11 +21,11 @@ class ClientController {
         const user = await auth.getUser();
         const { search } = request.all();
         if (user.promotor) {
-            const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE) AND clients.user_id = ${user.id}`);
+            const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, name2, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE) AND clients.user_id = ${user.id}`);
             const clients = JSON.parse(JSON.stringify(cliensss))
             return view.render('pages.clientsPage', { clients: clients[0] })
         } else {
-            const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE)`);
+            const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, name2, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE)`);
             const clients = JSON.parse(JSON.stringify(cliensss))
             return view.render('pages.clientsPage', { clients: clients[0] })
         }
@@ -39,13 +39,15 @@ class ClientController {
         const user = await auth.getUser();
         const {
             name,
+            name2,
             first_last_name,
             sec_last_name,
             civil_status,
             nacionality,
             birth,
             type_housing,
-            living_there,
+            living_there_y,
+            living_there_m,
             email,
             cellphone,
             phone,
@@ -56,13 +58,15 @@ class ClientController {
         const client = new Client();
         client.fill({
             name,
+            name2,
             first_last_name,
             sec_last_name,
             civil_status,
             nacionality,
             birth,
             type_housing,
-            living_there,
+            living_there_y,
+            living_there_m,
             email,
             cellphone,
             phone,
@@ -84,13 +88,15 @@ class ClientController {
         const client = await Client.find(params.id);
         client.merge(request.only([
             'name',
+            'name2',
             'first_last_name',
             'sec_last_name',
             'civil_status',
             'nacionality',
             'birth',
             'type_housing',
-            'living_there',
+            'living_there_y',
+            'living_there_m',
             'email',
             'cellphone',
             'phone',

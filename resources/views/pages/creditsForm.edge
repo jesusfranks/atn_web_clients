@@ -80,7 +80,7 @@ ATN - Clients form
                 {{--Cantidad--}} 
                 <div class="form-group col-sm">
                     <label for="amount">Cantidad</label>
-                    <input class="form-control" type="text" name="amount" value="{{ credit.amount }}">
+                    <input class="form-control" type="number" name="amount" value="{{ credit.amount }}">
                     @if(hasErrorFor('amount'))
                         <span>
                             {{ getErrorFor('amount') }}
@@ -90,7 +90,7 @@ ATN - Clients form
                 {{--Fecha--}} 
                 <div class="form-group col-sm">
                     <label for="date">Fecha</label>
-                    <input class="form-control" type="text" name="date" value="{{ credit.date }}">
+                    <input class="form-control" type="date" name="date" value="{{ credit.date }}">
                     @if(hasErrorFor('date'))
                         <span>
                             {{ getErrorFor('date') }}
@@ -265,7 +265,7 @@ ATN - Clients form
                     {{--Cantidad--}} 
                     <div class="form-group col-sm">
                         <label for="amount">Cantidad</label>
-                        <input class="form-control" type="text" name="amount" value="{{ old('amount', '') }}">
+                        <input class="form-control" type="number" name="amount" value="{{ old('amount', '') }}">
                         @if(hasErrorFor('amount'))
                             <span>
                                 {{ getErrorFor('amount') }}
@@ -275,7 +275,7 @@ ATN - Clients form
                     {{--Fecha--}} 
                     <div class="form-group col-sm">
                         <label for="date">Fecha</label>
-                        <input class="form-control" type="text" name="date" value="{{ old('date', '') }}">
+                        <input class="form-control" type="date" name="date" value="{{ old('date', '') }}">
                         @if(hasErrorFor('date'))
                             <span>
                                 {{ getErrorFor('date') }}

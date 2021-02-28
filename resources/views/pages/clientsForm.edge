@@ -20,13 +20,23 @@ ATN - Clients form
         <form action="{{ route('ClientController.edit', {id: client.id}) }}" method="POST">
             {{ csrfField() }}
             <div class="row">
-                {{--Nombre--}} 
+                {{--Nombre1--}} 
                 <div class="form-group col-sm">
-                    <label for="name">Nombres</label>
+                    <label for="name">Nombre</label>
                     <input class="form-control" type="text" name="name" value="{{ client.name }}">
                     @if(hasErrorFor('name'))
                         <span>
                             {{ getErrorFor('name') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Nombre2--}} 
+                <div class="form-group col-sm">
+                    <label for="name2">Segundo nombre</label>
+                    <input class="form-control" type="text" name="name2" value="{{ client.name2 }}">
+                    @if(hasErrorFor('name2'))
+                        <span>
+                            {{ getErrorFor('name2') }}
                         </span>
                     @endif
                 </div>
@@ -77,7 +87,7 @@ ATN - Clients form
                 {{--  birth  --}}
                 <div class="form-group col-sm">
                     <label for="birth">Fecha de nacimiento</label>
-                    <input class="form-control" type="text" name="birth" value="{{ client.birth }}">
+                    <input class="form-control" type="date" name="birth" value="{{ client.birth }}">
                     @if(hasErrorFor('birth'))
                     <span>
                         {{ getErrorFor('birth') }}
@@ -88,7 +98,7 @@ ATN - Clients form
             <div class="row">
                 {{--type_housing--}}    
                 <div class="form-group col-sm">
-                    <label for="type_housing">Tipo de vivienda</label>
+                    <label for="type_housing">Tipo de vivienda años</label>
                     <input class="form-control" type="text" name="type_housing" value="{{ client.type_housing }}">
                     @if(hasErrorFor('type_housing'))
                     <span>
@@ -96,14 +106,23 @@ ATN - Clients form
                     </span>
                     @endif
                 </div>
-                
-                {{--living_there--}}    
+                {{--living_there_y--}}    
                 <div class="form-group col-sm">
-                    <label for="living_there">Tiempo de arraigo</label>
-                    <input class="form-control" type="text" name="living_there" value="{{ client.living_there }}">
-                    @if(hasErrorFor('living_there'))
+                    <label for="living_there_y">Tiempo de arraigo meses</label>
+                    <input class="form-control" type="number" name="living_there_y" value="{{ client.living_there_y }}" min="0">
+                    @if(hasErrorFor('living_there_y'))
                     <span>
-                        {{ getErrorFor('living_there') }}
+                        {{ getErrorFor('living_there_y') }}
+                    </span>
+                    @endif
+                </div>
+                {{--living_there_m--}}    
+                <div class="form-group col-sm">
+                    <label for="living_there_m">Tiempo de arraigo</label>
+                    <input class="form-control" type="number" name="living_there_m" value="{{ client.living_there_m }}" min="0" max="11">
+                    @if(hasErrorFor('living_there_m'))
+                    <span>
+                        {{ getErrorFor('living_there_m') }}
                     </span>
                     @endif
                 </div>
@@ -190,11 +209,21 @@ ATN - Clients form
             <div class="row">
                 {{--Nombre--}} 
                 <div class="form-group col-sm">
-                    <label for="name">Nombres</label>
+                    <label for="name">Nombre</label>
                     <input class="form-control" type="text" name="name" value="{{ old('name', '') }}">
                     @if(hasErrorFor('name'))
                         <span>
                             {{ getErrorFor('name') }}
+                        </span>
+                    @endif
+                </div>
+                {{--Nombre2--}} 
+                <div class="form-group col-sm">
+                    <label for="name2">Segundo nombre</label>
+                    <input class="form-control" type="text" name="name2" value="{{ old('name2', '') }}">
+                    @if(hasErrorFor('name2'))
+                        <span>
+                            {{ getErrorFor('name2') }}
                         </span>
                     @endif
                 </div>
@@ -234,7 +263,7 @@ ATN - Clients form
                 {{--Nacionality--}}    
                 <div class="form-group col-sm">
                     <label for="nacionality">Nacionalidad</label>
-                    <input class="form-control" type="text" name="nacionality" value="{{ old('nacionality', 'Mexicana') }}">
+                    <input class="form-control" type="text" name="nacionality" value="{{ old('nacionality', 'MEXICANA') }}">
                     @if(hasErrorFor('nacionality'))
                     <span>
                         {{ getErrorFor('nacionality') }}
@@ -245,7 +274,7 @@ ATN - Clients form
                 {{--  birth  --}}
                 <div class="form-group col-sm">
                     <label for="birth">Fecha de nacimiento</label>
-                    <input class="form-control" type="text" name="birth" value="{{ old('birth', '') }}">
+                    <input class="form-control" type="date" name="birth" value="{{ old('birth', '') }}">
                     @if(hasErrorFor('birth'))
                     <span>
                         {{ getErrorFor('birth') }}
@@ -264,14 +293,23 @@ ATN - Clients form
                     </span>
                     @endif
                 </div>
-                
-                {{--living_there--}}    
+                {{--living_there_y--}}    
                 <div class="form-group col-sm">
-                    <label for="living_there">Tiempo de arraigo</label>
-                    <input class="form-control" type="text" name="living_there" value="{{ old('living_there', '') }}">
-                    @if(hasErrorFor('living_there'))
+                    <label for="living_there_y">Tiempo de arraigo años</label>
+                    <input class="form-control" type="number" name="living_there_y" value="{{ old('living_there_y', '') }}" min="0">
+                    @if(hasErrorFor('living_there_y'))
                     <span>
-                        {{ getErrorFor('living_there') }}
+                        {{ getErrorFor('living_there_y') }}
+                    </span>
+                    @endif
+                </div>
+                {{--living_there_m--}}    
+                <div class="form-group col-sm">
+                    <label for="living_there_m">Tiempo de arraigo meses</label>
+                    <input class="form-control" type="number" name="living_there_m" value="{{ old('living_there_m', '') }}" min="0" max="11">
+                    @if(hasErrorFor('living_there_m'))
+                    <span>
+                        {{ getErrorFor('living_there_m') }}
                     </span>
                     @endif
                 </div>
