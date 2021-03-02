@@ -12,6 +12,16 @@ ATN - Creditos
 
 <div class="container" style="margin-top: 3rem;">
     <div class="mx-auto" style="width: 50%; text-align: center;">
+        <br>
+        <form action="{{ route('CreditController.indexSearch') }}" method="POST">
+            {{ csrfField() }}
+            <div class="row">
+                <div class="form-group col-sm" >                  
+                    <input class="form-control" type="search" name="search" id="search" placeholder="Buscar por nombre...">
+                    <button class="btn btn-secondary" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
         <h1>Lista de clientes</h1>
         <h2>Información de créditos</h2>
     </div>
@@ -32,7 +42,7 @@ ATN - Creditos
                         <td >{{ client.name }} {{ client.name2 }}</td>
                         <td>{{ client.first_last_name }} {{ client.sec_last_name }}</td>
                         <td>{{ client.email }} | {{ client.cellphone }}</td>
-                        <td><a class="col-md-2" href="http://192.168.100.8:8080/controller/reportePDF?cliente={{client.id}}"><button class="btn btn-secondary">PDF</button></a></td>
+                        <td><a class="col-md-2" href="http://192.168.100.50:8080/controller/reportePDF?cliente={{client.id}}"><button class="btn btn-secondary">PDF</button></a></td>
                     </tr>
                 @endeach
             </tbody>

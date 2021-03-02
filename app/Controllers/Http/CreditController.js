@@ -22,6 +22,20 @@ class CreditController {
         }
     }
 
+    async indexSearch({ request, auth, view }) {
+        const user = await auth.getUser();
+        const { search } = request.all();
+        if (user.promotor) {
+            const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, name2, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE) AND clients.user_id = ${user.id}`);
+            const clients = JSON.parse(JSON.stringify(cliensss))
+            return view.render('pages.creditClientsPage', { clients: clients[0] })
+        } else {
+            const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, name2, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE)`);
+            const clients = JSON.parse(JSON.stringify(cliensss))
+            return view.render('pages.creditClientsPage', { clients: clients[0] })
+        }
+    }
+
     async redirectForm({ auth, view, params }) {
         const { client_id } = params
         const user = await auth.getUser();

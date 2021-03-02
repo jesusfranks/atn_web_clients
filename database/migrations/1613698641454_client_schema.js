@@ -12,8 +12,11 @@ class ClientSchema extends Schema {
       table.string('name2', 80 )
       table.string('first_last_name', 80).notNullable()
       table.string('sec_last_name', 80)
+      table.string('gender', 10)
       table.string('civil_status', 80 ).notNullable()
       table.string('nacionality', 90).notNullable()
+      table.string('country', 90).notNullable()
+      table.string('state', 90).notNullable()
       table.string('birth', 90).notNullable()
       table.string('type_housing', 80 ).notNullable()
       table.string('living_there_y', 10 )
@@ -23,11 +26,12 @@ class ClientSchema extends Schema {
       table.string('email', 80 ).notNullable()
       table.string('contact_schedule', 80).notNullable()
       table.string('rfc', 80 ).notNullable()
+      table.string('fiel', 90)
       table.string('curp', 80 ).notNullable()
       table.timestamps()
-
-      //ALTER TABLE clients ADD FULLTEXT name_fulltext (name, name2, first_last_name, sec_last_name);
-    })
+      //
+    });
+    this.raw("ALTER TABLE clients ADD FULLTEXT name_fulltext (name, name2, first_last_name, sec_last_name);")
   }
 
   down () {

@@ -8,6 +8,8 @@ class CreateClient {
       'sec_last_name': 'required',
       'civil_status': 'required',
       'nacionality': 'required',
+      'country': 'required',
+      'state': 'required',
       'birth': 'required',
       'type_housing': 'required',
       'living_there_y': 'required',

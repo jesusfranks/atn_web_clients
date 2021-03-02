@@ -44,6 +44,10 @@ class ClientController {
             sec_last_name,
             civil_status,
             nacionality,
+            country,
+            state,
+            gender,
+            fiel,
             birth,
             type_housing,
             living_there_y,
@@ -63,6 +67,10 @@ class ClientController {
             sec_last_name,
             civil_status,
             nacionality,
+            country,
+            state,
+            gender,
+            fiel,
             birth,
             type_housing,
             living_there_y,
@@ -93,6 +101,10 @@ class ClientController {
             'sec_last_name',
             'civil_status',
             'nacionality',
+            'country',
+            'state',
+            'gender',
+            'fiel',
             'birth',
             'type_housing',
             'living_there_y',
@@ -115,6 +127,8 @@ class ClientController {
         const adressC = await client.adress().fetch();
         const references = await client.references().fetch();
         const referencias = references.toJSON()
+        const bank = await client.bank().fetch();
+        await bank.delete();
         if (job != null){
             const adressJ = await job.adress().fetch();
             if(adressJ != null)

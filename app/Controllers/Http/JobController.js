@@ -14,10 +14,13 @@ class JobController {
         const id = params.client_id;
         const client = await Client.find(id)
         const {
+            dependence,
             place,
             occupation,
             job,
-            time_working,
+            time_working_y,
+            time_working_m,
+            type,
             phone,
             extension,
             payroll,
@@ -25,10 +28,13 @@ class JobController {
         } = request.all();
         const empleo = new Job();
         empleo.fill({
+            dependence,
             place,
             occupation,
             job,
-            time_working,
+            time_working_y,
+            time_working_m,
+            type,
             phone,
             extension,
             payroll,
@@ -47,10 +53,13 @@ class JobController {
     async edit({ request, session, response, params }) {
         const job = await Job.find(params.id);
         job.merge(request.only([
+            'dependence',
             'place',
             'occupation',
             'job',
-            'time_working',
+            'time_working_y',
+            'time_working_m',
+            'type',
             'phone',
             'extension',
             'payroll',

@@ -19,20 +19,32 @@ ATN - Clients form
         <form action="{{ route('JobController.edit', {id: job.id} ) }}" method="POST">
             {{ csrfField() }}
             <div class="row">
+                {{--Dependencia--}} 
+                <div class="form-group col-sm">
+                    <label for="dependence">Dependencia</label>
+                    <input class="form-control" type="text" name="dependence" value="{{ job.dependence }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('dependence'))
+                        <span>
+                            {{ getErrorFor('dependence') }}
+                        </span>
+                    @endif
+                </div>
                 {{--Lugar--}} 
                 <div class="form-group col-sm">
-                    <label for="place">Lugar</label>
-                    <input class="form-control" type="text" name="place" value="{{ job.place}}">
+                    <label for="place">Centro de trabajo</label>
+                    <input class="form-control" type="text" name="place" value="{{ job.place}}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('place'))
                         <span>
                             {{ getErrorFor('place') }}
                         </span>
                     @endif
                 </div>
+            </div>
+            <div class="row">
                 {{--Ocupación--}} 
                 <div class="form-group col-sm">
                     <label for="occupation">Ocupación</label>
-                    <input class="form-control" type="text" name="occupation" value="{{ job.occupation }}">
+                    <input class="form-control" type="text" name="occupation" value="{{ job.occupation }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('occupation'))
                         <span>
                             {{ getErrorFor('occupation') }}
@@ -42,7 +54,7 @@ ATN - Clients form
                 {{--Puesto--}}    
                 <div class="form-group col-sm">
                     <label for="job">Puesto</label>
-                    <input class="form-control" type="text" name="job" value="{{ job.job }}">
+                    <input class="form-control" type="text" name="job" value="{{ job.job }}" onkeyup="this.value = this.value.toUpperCase();" >
                     @if(hasErrorFor('job'))
                         <span>
                             {{ getErrorFor('job') }}
@@ -51,22 +63,30 @@ ATN - Clients form
                 </div>
             </div>
             <div class="row">
-                {{--Antigüedad--}}    
+                {{--Antigüedad años--}}    
                 <div class="form-group col-sm">
-                    <label for="time_working">Antigüedad</label>
-                    <input class="form-control" type="text" name="time_working" value="{{ job.time_working }}">
-                    @if(hasErrorFor('time_working'))
+                    <label for="time_working_y">Antigüedad Años</label>
+                    <input class="form-control" type="number" name="time_working_y" value="{{ job.time_working_y }}" min="0">
+                    @if(hasErrorFor('time_working_y'))
                     <span>
-                        {{ getErrorFor('time_working') }}
+                        {{ getErrorFor('time_working_y') }}
+                    </span>
+                @endif
+                </div>       
+                {{--Antigüedad meses--}}    
+                <div class="form-group col-sm">
+                    <label for="time_working_m">Antigüedad Meses</label>
+                    <input class="form-control" type="number" name="time_working_m" value="{{ job.time_working_m }}" min="0" max="11">
+                    @if(hasErrorFor('time_working_m'))
+                    <span>
+                        {{ getErrorFor('time_working_m') }}
                     </span>
                 @endif
                 </div>                
-            </div>
-            <div class="row">
                 {{--phone--}}
                 <div class="form-group col-sm">
                     <label for="phone">Telefono</label>
-                    <input class="form-control" type="text" name="phone" value="{{ job.phone }}">
+                    <input class="form-control" type="number" name="phone" value="{{ job.phone }}" minlength="10" maxlength="10">
                     @if(hasErrorFor('phone'))
                         <span>
                             {{ getErrorFor('phone') }}
@@ -76,7 +96,7 @@ ATN - Clients form
                 {{--extension--}}
                 <div class="form-group col-sm">
                     <label for="extension">Extensión</label>
-                    <input class="form-control" type="extension" name="extension" value="{{ job.extension }}">
+                    <input class="form-control" type="number" name="extension" value="{{ job.extension }}">
                     @if(hasErrorFor('extension'))
                         <span>
                             {{ getErrorFor('extension') }}
@@ -88,23 +108,49 @@ ATN - Clients form
                 {{--Nómina--}}    
                 <div class="form-group col-sm">
                     <label for="payroll">Nómina</label>
-                    <input class="form-control" type="text" name="payroll" value="{{ job.payroll }}">
+                    <input class="form-control" type="text" name="payroll" value="{{ job.payroll }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('payroll'))
                         <span>
                             {{ getErrorFor('payroll') }}
                         </span>
                     @endif
                 </div>
-                
-                {{--Ingresos--}}    
+                {{--Ingresos--}}
                 <div class="form-group col-sm">
                     <label for="income">Ingresos</label>
-                    <input class="form-control" type="text" name="income" value="{{ job.income }}">
+                    <input class="form-control" type="number" name="income" value="{{ job.income }}">
                     @if(hasErrorFor('income'))
                         <span>
                             {{ getErrorFor('income') }}
                         </span>
                     @endif
+                </div>
+                 {{--Tipo--}}    
+                 <div class="form-group col-sm">
+                    <label for="type">Tipo de deuda</label>
+                    <select class="form-control" id="type" name="type">
+                        @if(job.type == 'B')
+                            <option value="B" selected>BASE</option>
+                            <option value="E">EVENTUAL</option>
+                            <option value="J">JUBILADO O PENSIONADO</option>
+                            <option value="C">CONFIANZA</option>
+                        @elseif(job.type == 'E')
+                            <option value="B" >BASE</option>
+                            <option value="E" selected>EVENTUAL</option>
+                            <option value="J">JUBILADO O PENSIONADO</option>
+                            <option value="C">CONFIANZA</option>
+                        @elseif(job.type == 'J')
+                            <option value="B" >BASE</option>
+                            <option value="E">EVENTUAL</option>
+                            <option value="J" selected>JUBILADO O PENSIONADO</option>
+                            <option value="C">CONFIANZA</option>
+                        @else
+                            <option value="B" >BASE</option>
+                            <option value="E">EVENTUAL</option>
+                            <option value="J">JUBILADO O PENSIONADO</option>
+                            <option value="C"selected>CONFIANZA</option>
+                        @endif
+                    </select>
                 </div>
             </div>    
             <div class="mx-auto" style="width: 50%; text-align: center;">
@@ -120,20 +166,32 @@ ATN - Clients form
         <form action="{{ route('JobController.create', {client_id: client_id} ) }}" method="POST">
             {{ csrfField() }}
             <div class="row">
+                {{--Dependencia--}} 
+                <div class="form-group col-sm">
+                    <label for="dependence">Dependencia</label>
+                    <input class="form-control" type="text" name="dependence" value="{{ old('dependence', '') }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('dependence'))
+                        <span>
+                            {{ getErrorFor('dependence') }}
+                        </span>
+                    @endif
+                </div>
                 {{--Lugar--}} 
                 <div class="form-group col-sm">
-                    <label for="place">Lugar</label>
-                    <input class="form-control" type="text" name="place" value="{{ old('place', '') }}">
+                    <label for="place">Centro de trabajo</label>
+                    <input class="form-control" type="text" name="place" value="{{ old('place', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('place'))
                         <span>
                             {{ getErrorFor('place') }}
                         </span>
                     @endif
                 </div>
+            </div>
+            <div class="row">
                 {{--Ocupación--}} 
                 <div class="form-group col-sm">
                     <label for="occupation">Ocupación</label>
-                    <input class="form-control" type="text" name="occupation" value="{{ old('occupation', '') }}">
+                    <input class="form-control" type="text" name="occupation" value="{{ old('occupation', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('occupation'))
                         <span>
                             {{ getErrorFor('occupation') }}
@@ -143,7 +201,7 @@ ATN - Clients form
                 {{--Puesto--}}    
                 <div class="form-group col-sm">
                     <label for="job">Puesto</label>
-                    <input class="form-control" type="text" name="job" value="{{ old('job', '') }}">
+                    <input class="form-control" type="text" name="job" value="{{ old('job', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('job'))
                         <span>
                             {{ getErrorFor('job') }}
@@ -152,22 +210,30 @@ ATN - Clients form
                 </div>
             </div>
             <div class="row">
-                {{--Antigüedad--}}    
+                {{--Antigüedad años--}}    
                 <div class="form-group col-sm">
-                    <label for="time_working">Antigüedad</label>
-                    <input class="form-control" type="text" name="time_working" value="{{ old('time_working', '') }}">
-                    @if(hasErrorFor('time_working'))
+                    <label for="time_working_y">Antigüedad Años</label>
+                    <input class="form-control" type="number" name="time_working_y" value="{{ old('time_working_y', '0') }}" min="0">
+                    @if(hasErrorFor('time_working_y'))
                     <span>
-                        {{ getErrorFor('time_working') }}
+                        {{ getErrorFor('time_working_y') }}
                     </span>
-                @endif
-                </div>                
-            </div>
-            <div class="row">
+                    @endif
+                </div>       
+                {{--Antigüedad meses--}}    
+                <div class="form-group col-sm">
+                    <label for="time_working_m">Antigüedad Meses</label>
+                    <input class="form-control" type="number" name="time_working_m" value="{{ old('time_working_m', '0') }}" min="0" max="11">
+                    @if(hasErrorFor('time_working_m'))
+                    <span>
+                        {{ getErrorFor('time_working_m') }}
+                    </span>
+                    @endif
+                </div>          
                 {{--phone--}}
                 <div class="form-group col-sm">
                     <label for="phone">Telefono</label>
-                    <input class="form-control" type="text" name="phone" value="{{ old('phone', '') }}">
+                    <input class="form-control" type="number" name="phone" value="{{ old('phone', '') }}" minlength="10" maxlength="10">
                     @if(hasErrorFor('phone'))
                         <span>
                             {{ getErrorFor('phone') }}
@@ -177,7 +243,7 @@ ATN - Clients form
                 {{--extension--}}
                 <div class="form-group col-sm">
                     <label for="extension">Extensión</label>
-                    <input class="form-control" type="extension" name="extension" value="{{ old('extension', '') }}">
+                    <input class="form-control" type="number" name="extension" value="{{ old('extension', '') }}">
                     @if(hasErrorFor('extension'))
                         <span>
                             {{ getErrorFor('extension') }}
@@ -189,31 +255,39 @@ ATN - Clients form
                 {{--Nómina--}}    
                 <div class="form-group col-sm">
                     <label for="payroll">Nómina</label>
-                    <input class="form-control" type="text" name="payroll" value="{{ old('payroll', '') }}">
+                    <input class="form-control" type="text" name="payroll" value="{{ old('payroll', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('payroll'))
                         <span>
                             {{ getErrorFor('payroll') }}
                         </span>
                     @endif
                 </div>
-                
-                {{--Ingresos--}}    
+                {{--Ingresos--}}
                 <div class="form-group col-sm">
                     <label for="income">Ingresos</label>
-                    <input class="form-control" type="text" name="income" value="{{ old('income', '') }}">
+                    <input class="form-control" type="number" name="income" value="{{ old('income', '1000') }}">
                     @if(hasErrorFor('income'))
                         <span>
                             {{ getErrorFor('income') }}
                         </span>
                     @endif
                 </div>
-            </div>    
+                {{--Tipo--}}    
+                <div class="form-group col-sm">
+                    <label for="type">Tipo de deuda</label>
+                    <select class="form-control" id="type" name="type">
+                        <option value="B" selected>BASE</option>
+                        <option value="E">EVENTUAL</option>
+                        <option value="J">JUBILADO O PENSIONADO O PENSIONADO</option>
+                        <option value="C">CONFIANZA</option>
+                    </select>
+                </div> 
+            </div> 
             <div class="mx-auto" style="width: 50%; text-align: center;">
                 <button class="btn btn-secondary" type="submit">Guardar</button>
-            </div>
+            </div>   
         </form>
     @endif
-
     
 </div>
   

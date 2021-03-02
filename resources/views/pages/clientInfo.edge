@@ -15,6 +15,7 @@ ATN - Clients Info
     @if(client)
     <div class="mx-auto" style="width: 50%; text-align: center;">
         <h1>Datos personales del cliente {{client.id}} </h3>
+        <a href="{{ route('AllController.getCredit', { id: client.id }) }}" ><button class="btn btn-success" >ir al credito</button></a>
     </div>
         <table class="table table-dark table-striped">
             
@@ -23,10 +24,12 @@ ATN - Clients Info
                     <th scope="row">Nombre</th>
                     <td >{{ client.name }}</td>
                 </tr>
-                <tr >
-                    <th scope="row">Nombre</th>
-                    <td >{{ client.name2 }}</td>
-                </tr>
+                @if(client.name2 != null)
+                    <tr >
+                        <th scope="row">Segundo nombre</th>
+                        <td >{{ client.name2 }}</td>
+                    </tr>
+                @endif
                 <tr >
                     <th scope="row">Primer Apellido</th>
                     <td >{{ client.first_last_name }}</td>
@@ -44,8 +47,20 @@ ATN - Clients Info
                     <td >{{ client.nacionality }}</td>
                 </tr>
                 <tr >
+                    <th scope="row">País</th>
+                    <td >{{ client.country }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Estado</th>
+                    <td >{{ client.state }}</td>
+                </tr>
+                <tr >
                     <th scope="row">Fecha de nacimiento</th>
                     <td >{{ client.birth }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Genero</th>
+                    <td >{{ client.gender }}</td>
                 </tr>
                 <tr >
                     <th scope="row">Tipo de casa</th>
@@ -79,6 +94,10 @@ ATN - Clients Info
                     <th scope="row">CURP</th>
                     <td >{{ client.curp }}</td>
                 </tr>
+                <tr >
+                    <th scope="row">FIEL</th>
+                    <td >{{ client.fiel }}</td>
+                </tr>
             </tbody>
 
         </table>
@@ -106,6 +125,10 @@ ATN - Clients Info
                     <tr >
                         <th scope="row">Colonia</th>
                         <td >{{ adressC.suburb }}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Municipio</th>
+                        <td >{{ adressC.town }}</td>
                     </tr>
                     <tr >
                         <th scope="row">Cruzamientos</th>
@@ -143,6 +166,10 @@ ATN - Clients Info
             
             <tbody>
                 <tr >
+                    <th scope="row">Dependencia</th>
+                    <td >{{ job.dependence }}</td>
+                </tr>
+                <tr >
                     <th scope="row">Lugar de trabajo</th>
                     <td >{{ job.place }}</td>
                 </tr>
@@ -155,8 +182,12 @@ ATN - Clients Info
                     <td >{{ job.job }}</td>
                 </tr>
                 <tr >
-                    <th scope="row">Antigüedad</th>
-                    <td >{{ job.time_working }}</td>
+                    <th scope="row">Antigüedad Años</th>
+                    <td >{{ job.time_working_y }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Antigüedad Meses</th>
+                    <td >{{ job.time_working_m }}</td>
                 </tr>
                 <tr >
                     <th scope="row">Teléfono</th>
@@ -173,6 +204,10 @@ ATN - Clients Info
                 <tr >
                     <th scope="row">Ingresos</th>
                     <td >{{ job.income }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Tipo</th>
+                    <td >{{ job.type }}</td>
                 </tr>
                 
             </tbody>
@@ -202,6 +237,10 @@ ATN - Clients Info
                         <tr >
                             <th scope="row">Colonia</th>
                             <td >{{ adressJ.suburb }}</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Municipio</th>
+                            <td >{{ adressJ.town }}</td>
                         </tr>
                         <tr >
                             <th scope="row">Cruzamientos</th>

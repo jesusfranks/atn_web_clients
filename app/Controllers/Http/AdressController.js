@@ -20,6 +20,7 @@ class AdressController {
             suburb,
             crosses,
             state,
+            town,
             contry,
             postal_code
         } = request.all();
@@ -31,6 +32,7 @@ class AdressController {
             suburb,
             crosses,
             state,
+            town,
             contry,
             postal_code
         });
@@ -53,6 +55,7 @@ class AdressController {
             suburb,
             crosses,
             state,
+            town,
             contry,
             postal_code
         } = request.all();
@@ -64,6 +67,7 @@ class AdressController {
             suburb,
             crosses,
             state,
+            town,
             contry,
             postal_code
         });
@@ -86,6 +90,7 @@ class AdressController {
             'suburb',
             'crosses',
             'state',
+            'town',
             'contry',
             'postal_code',
         ]));

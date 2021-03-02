@@ -63,6 +63,7 @@ Route.group(()=>{
 //Credits
 Route.group(()=>{
     Route.get('/', 'CreditController.index');
+    Route.post('/', 'CreditController.indexSearch');
     Route.get('/newCredit/:client_id', 'CreditController.redirectForm');
     Route.post('/newCredit/:client_id', 'CreditController.create').validator('CreateCredit');
     Route.get('/credit/:id', 'CreditController.redirectFormEdit');

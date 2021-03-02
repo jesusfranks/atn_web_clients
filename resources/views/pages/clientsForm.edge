@@ -23,7 +23,7 @@ ATN - Clients form
                 {{--Nombre1--}} 
                 <div class="form-group col-sm">
                     <label for="name">Nombre</label>
-                    <input class="form-control" type="text" name="name" value="{{ client.name }}">
+                    <input class="form-control" type="text" name="name" value="{{ client.name }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('name'))
                         <span>
                             {{ getErrorFor('name') }}
@@ -33,7 +33,7 @@ ATN - Clients form
                 {{--Nombre2--}} 
                 <div class="form-group col-sm">
                     <label for="name2">Segundo nombre</label>
-                    <input class="form-control" type="text" name="name2" value="{{ client.name2 }}">
+                    <input class="form-control" type="text" name="name2" value="{{ client.name2 }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('name2'))
                         <span>
                             {{ getErrorFor('name2') }}
@@ -43,7 +43,7 @@ ATN - Clients form
                 {{--Primer Apellido--}} 
                 <div class="form-group col-sm">
                     <label for="first_last_name">Primer Apellido</label>
-                    <input class="form-control" type="text" name="first_last_name" value="{{ client.first_last_name }}">
+                    <input class="form-control" type="text" name="first_last_name" value="{{ client.first_last_name }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('first_last_name'))
                         <span>
                             {{ getErrorFor('first_last_name') }}
@@ -53,7 +53,7 @@ ATN - Clients form
                 {{--Segundo Apellido--}}    
                 <div class="form-group col-sm">
                     <label for="sec_last_name">Segundo Apellido</label>
-                    <input class="form-control" type="text" name="sec_last_name" value="{{ client.sec_last_name }}">
+                    <input class="form-control" type="text" name="sec_last_name" value="{{ client.sec_last_name }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('sec_last_name'))
                         <span>
                             {{ getErrorFor('sec_last_name') }}
@@ -62,28 +62,61 @@ ATN - Clients form
                 </div>
             </div>
             <div class="row">
-                {{--civil_status--}}    
-                <div class="form-group col-sm">
-                    <label for="civil_status">Estado civil</label>
-                    <input class="form-control" type="text" name="civil_status" value="{{ client.civil_status }}">
-                    @if(hasErrorFor('civil_status'))
-                    <span>
-                        {{ getErrorFor('civil_status') }}
-                    </span>
-                @endif
-                </div>
-                
-                {{--Nacionality--}}    
-                <div class="form-group col-sm">
+                 {{--Nacionality--}}    
+                 <div class="form-group col-sm">
                     <label for="nacionality">Nacionalidad</label>
-                    <input class="form-control" type="text" name="nacionality" value="{{ client.nacionality }}">
+                    <input class="form-control" type="text" name="nacionality" value="{{ client.nacionality }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('nacionality'))
                     <span>
                         {{ getErrorFor('nacionality') }}
                     </span>
                     @endif
                 </div>
-                
+                 {{--country--}}    
+                 <div class="form-group col-sm">
+                    <label for="country">País</label>
+                    <input class="form-control" type="text" name="country" value="{{ client.country }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('country'))
+                    <span>
+                        {{ getErrorFor('country') }}
+                    </span>
+                    @endif
+                </div>
+                 {{--state--}}    
+                 <div class="form-group col-sm">
+                    <label for="state">Estado</label>
+                    <input class="form-control" type="text" name="state" value="{{ client.state }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('state'))
+                    <span>
+                        {{ getErrorFor('state') }}
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{--civil_status--}}    
+                <div class="form-group col-sm">
+                    <label for="civil_status">Estado civil</label>
+                    <input class="form-control" type="text" name="civil_status" value="{{ client.civil_status }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('civil_status'))
+                    <span>
+                        {{ getErrorFor('civil_status') }}
+                    </span>
+                @endif
+                </div>             
+                {{--gender--}}
+                <div class="form-group col-sm">
+                    <label for="gender">Genero</label>
+                    <select class="form-control" id="gender" name="gender">
+                        @if(client.gender == 'Propia')
+                        <option value="M" selected>MASCULINO</option>
+                        <option value="F">FEMENINO</option>                         
+                    @else
+                        <option value="M">MASCULINO</option>
+                        <option value="F" selected>FEMENINO</option>
+                    @endif                                    
+                    </select>
+                </div>    
                 {{--  birth  --}}
                 <div class="form-group col-sm">
                     <label for="birth">Fecha de nacimiento</label>
@@ -98,8 +131,8 @@ ATN - Clients form
             <div class="row">
                 {{--type_housing--}}    
                 <div class="form-group col-sm">
-                    <label for="type_housing">Tipo de vivienda años</label>
-                    <input class="form-control" type="text" name="type_housing" value="{{ client.type_housing }}">
+                    <label for="type_housing">Tipo de vivienda</label>
+                    <input class="form-control" type="text" name="type_housing" value="{{ client.type_housing }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('type_housing'))
                     <span>
                         {{ getErrorFor('type_housing') }}
@@ -142,7 +175,7 @@ ATN - Clients form
                 {{--phone--}}
                 <div class="form-group col-sm">
                     <label for="phone">Telefono</label>
-                    <input class="form-control" type="text" name="phone" value="{{ client.phone }}">
+                    <input class="form-control" type="text" name="phone" value="{{ client.phone }}" minlength="10" maxlength="10">
                     @if(hasErrorFor('phone'))
                         <span>
                             {{ getErrorFor('phone') }}
@@ -153,7 +186,7 @@ ATN - Clients form
                 {{--cellphone--}}    
                 <div class="form-group col-sm">
                     <label for="cellphone">Célular</label>
-                    <input class="form-control" type="text" name="cellphone" value="{{ client.cellphone }}">
+                    <input class="form-control" type="text" name="cellphone" value="{{ client.cellphone }}" minlength="10" maxlength="10">
                     @if(hasErrorFor('cellphone'))
                         <span>
                             {{ getErrorFor('cellphone') }}
@@ -164,7 +197,7 @@ ATN - Clients form
                 {{--contact_schedule--}}    
                 <div class="form-group col-sm">
                     <label for="contact_schedule">Horario de contacto</label>
-                    <input class="form-control" type="text" name="contact_schedule" value="{{ client.contact_schedule }}">
+                    <input class="form-control" type="text" name="contact_schedule" value="{{ client.contact_schedule }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('contact_schedule'))
                         <span>
                             {{ getErrorFor('contact_schedule') }}
@@ -176,21 +209,30 @@ ATN - Clients form
                 {{--rfc--}}    
                 <div class="form-group col-sm">
                     <label for="rfc">RFC</label>
-                    <input class="form-control" type="text" name="rfc" value="{{ client.rfc }}">
+                    <input class="form-control" type="text" name="rfc" value="{{ client.rfc }}" onkeyup="this.value = this.value.toUpperCase();" minlength="12" maxlength="13">
                     @if(hasErrorFor('rfc'))
                         <span>
                             {{ getErrorFor('rfc') }}
                         </span>
                     @endif
                 </div>
-                
                 {{--curp--}}    
                 <div class="form-group col-sm">
                     <label for="curp">CURP</label>
-                    <input class="form-control" type="text" name="curp" value="{{ client.curp }}">
+                    <input class="form-control" type="text" name="curp" value="{{ client.curp }}" onkeyup="this.value = this.value.toUpperCase();" minlength="18" maxlength="18">
                     @if(hasErrorFor('curp'))
                         <span>
                             {{ getErrorFor('curp') }}
+                        </span>
+                    @endif
+                </div>
+                {{--fiel--}}    
+                <div class="form-group col-sm">
+                    <label for="fiel">FIEL o e-firma</label>
+                    <input class="form-control" type="text" name="fiel" value="{{ client.fiel }}" placeholder="(si es que se tiene)" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('fiel'))
+                        <span>
+                            {{ getErrorFor('fiel') }}
                         </span>
                     @endif
                 </div>
@@ -199,7 +241,7 @@ ATN - Clients form
                 <button class="btn btn-secondary" type="submit">Guardar</button>
             </div>
         </form>
-    @else
+    @else 
         <div class="mx-auto" style="width: 50%; text-align: center; margin-bottom:1rem;">
             <h1>Nuevo cliente</h1>
         </div>
@@ -210,7 +252,7 @@ ATN - Clients form
                 {{--Nombre--}} 
                 <div class="form-group col-sm">
                     <label for="name">Nombre</label>
-                    <input class="form-control" type="text" name="name" value="{{ old('name', '') }}">
+                    <input class="form-control" type="text" name="name" value="{{ old('name', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('name'))
                         <span>
                             {{ getErrorFor('name') }}
@@ -220,7 +262,7 @@ ATN - Clients form
                 {{--Nombre2--}} 
                 <div class="form-group col-sm">
                     <label for="name2">Segundo nombre</label>
-                    <input class="form-control" type="text" name="name2" value="{{ old('name2', '') }}">
+                    <input class="form-control" type="text" name="name2" value="{{ old('name2', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('name2'))
                         <span>
                             {{ getErrorFor('name2') }}
@@ -230,7 +272,7 @@ ATN - Clients form
                 {{--Primer Apellido--}} 
                 <div class="form-group col-sm">
                     <label for="first_last_name">Primer Apellido</label>
-                    <input class="form-control" type="text" name="first_last_name" value="{{ old('first_last_name', '') }}">
+                    <input class="form-control" type="text" name="first_last_name" value="{{ old('first_last_name', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('first_last_name'))
                         <span>
                             {{ getErrorFor('first_last_name') }}
@@ -240,7 +282,7 @@ ATN - Clients form
                 {{--Segundo Apellido--}}    
                 <div class="form-group col-sm">
                     <label for="sec_last_name">Segundo Apellido</label>
-                    <input class="form-control" type="text" name="sec_last_name" value="{{ old('sec_last_name', '') }}">
+                    <input class="form-control" type="text" name="sec_last_name" value="{{ old('sec_last_name', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('sec_last_name'))
                         <span>
                             {{ getErrorFor('sec_last_name') }}
@@ -248,11 +290,62 @@ ATN - Clients form
                     @endif
                 </div>
             </div>
+            <div class="row">               
+                {{--Nacionality--}}    
+                <div class="form-group col-sm">
+                    <label for="nacionality">Nacionalidad</label>
+                    <input class="form-control" type="text" name="nacionality" value="{{ old('nacionality', 'MEXICANA') }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('nacionality'))
+                    <span>
+                        {{ getErrorFor('nacionality') }}
+                    </span>
+                    @endif
+                </div>
+                {{--country--}}    
+                <div class="form-group col-sm">
+                    <label for="country">País</label>
+                    <input class="form-control" type="text" name="country" value="{{ old('country', 'MEXICO') }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('country'))
+                    <span>
+                        {{ getErrorFor('country') }}
+                    </span>
+                    @endif
+                </div>
+                 {{--state--}}    
+                 <div class="form-group col-sm">
+                    <label for="state">Estado</label>
+                    <input class="form-control" type="text" name="state" value="{{ old('state', 'HIDALGO') }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('state'))
+                    <span>
+                        {{ getErrorFor('state') }}
+                    </span>
+                    @endif
+                </div>
+                
+            </div>
             <div class="row">
+                {{--  birth  --}}
+                <div class="form-group col-sm">
+                    <label for="birth">Fecha de nacimiento</label>
+                    <input class="form-control" type="date" name="birth" value="{{ old('birth', '') }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('birth'))
+                    <span>
+                        {{ getErrorFor('birth') }}
+                    </span>
+                    @endif
+                </div>
+                {{--gender--}}
+                <div class="form-group col-sm">
+                    <label for="gender">Genero</label>
+                    <select class="form-control" id="gender" name="gender">
+                        <option value="M" selected>Masculino</option>
+                        <option value="F">Femenino</option>                                        
+                    </select>
+                </div>  
                 {{--civil_status--}}    
                 <div class="form-group col-sm">
                     <label for="civil_status">Estado civil</label>
-                    <input class="form-control" type="text" name="civil_status" value="{{ old('civil_status', '') }}">
+                    <input class="form-control" type="text" name="civil_status" value="{{ old('civil_status', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('civil_status'))
                     <span>
                         {{ getErrorFor('civil_status') }}
@@ -260,33 +353,12 @@ ATN - Clients form
                 @endif
                 </div>
                 
-                {{--Nacionality--}}    
-                <div class="form-group col-sm">
-                    <label for="nacionality">Nacionalidad</label>
-                    <input class="form-control" type="text" name="nacionality" value="{{ old('nacionality', 'MEXICANA') }}">
-                    @if(hasErrorFor('nacionality'))
-                    <span>
-                        {{ getErrorFor('nacionality') }}
-                    </span>
-                    @endif
-                </div>
-                
-                {{--  birth  --}}
-                <div class="form-group col-sm">
-                    <label for="birth">Fecha de nacimiento</label>
-                    <input class="form-control" type="date" name="birth" value="{{ old('birth', '') }}">
-                    @if(hasErrorFor('birth'))
-                    <span>
-                        {{ getErrorFor('birth') }}
-                    </span>
-                    @endif
-                </div>
             </div>
             <div class="row">
                 {{--type_housing--}}    
                 <div class="form-group col-sm">
                     <label for="type_housing">Tipo de vivienda</label>
-                    <input class="form-control" type="text" name="type_housing" value="{{ old('type_housing', '') }}">
+                    <input class="form-control" type="text" name="type_housing" value="{{ old('type_housing', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('type_housing'))
                     <span>
                         {{ getErrorFor('type_housing') }}
@@ -296,7 +368,7 @@ ATN - Clients form
                 {{--living_there_y--}}    
                 <div class="form-group col-sm">
                     <label for="living_there_y">Tiempo de arraigo años</label>
-                    <input class="form-control" type="number" name="living_there_y" value="{{ old('living_there_y', '') }}" min="0">
+                    <input class="form-control" type="number" name="living_there_y" value="{{ old('living_there_y', '') }}" min="0" >
                     @if(hasErrorFor('living_there_y'))
                     <span>
                         {{ getErrorFor('living_there_y') }}
@@ -329,7 +401,7 @@ ATN - Clients form
                 {{--phone--}}
                 <div class="form-group col-sm">
                     <label for="phone">Telefono</label>
-                    <input class="form-control" type="text" name="phone" value="{{ old('phone', '') }}">
+                    <input class="form-control" type="text" name="phone" value="{{ old('phone', '') }}" minlength="10" maxlength="10">
                     @if(hasErrorFor('phone'))
                         <span>
                             {{ getErrorFor('phone') }}
@@ -340,7 +412,7 @@ ATN - Clients form
                 {{--cellphone--}}    
                 <div class="form-group col-sm">
                     <label for="cellphone">Célular</label>
-                    <input class="form-control" type="text" name="cellphone" value="{{ old('cellphone', '') }}">
+                    <input class="form-control" type="text" name="cellphone" value="{{ old('cellphone', '') }}" minlength="10" maxlength="10">
                     @if(hasErrorFor('cellphone'))
                         <span>
                             {{ getErrorFor('cellphone') }}
@@ -351,7 +423,7 @@ ATN - Clients form
                 {{--contact_schedule--}}    
                 <div class="form-group col-sm">
                     <label for="contact_schedule">Horario de contacto</label>
-                    <input class="form-control" type="text" name="contact_schedule" value="{{ old('contact_schedule', '') }}">
+                    <input class="form-control" type="text" name="contact_schedule" value="{{ old('contact_schedule', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('contact_schedule'))
                         <span>
                             {{ getErrorFor('contact_schedule') }}
@@ -363,7 +435,7 @@ ATN - Clients form
                 {{--rfc--}}    
                 <div class="form-group col-sm">
                     <label for="rfc">RFC</label>
-                    <input class="form-control" type="text" name="rfc" value="{{ old('rfc', '') }}">
+                    <input class="form-control" type="text" name="rfc" value="{{ old('rfc', '') }}" onkeyup="this.value = this.value.toUpperCase();" minlength="12" maxlength="13">
                     @if(hasErrorFor('rfc'))
                         <span>
                             {{ getErrorFor('rfc') }}
@@ -374,10 +446,20 @@ ATN - Clients form
                 {{--curp--}}    
                 <div class="form-group col-sm">
                     <label for="curp">CURP</label>
-                    <input class="form-control" type="text" name="curp" value="{{ old('curp', '') }}">
+                    <input class="form-control" type="text" name="curp" value="{{ old('curp', '') }}" onkeyup="this.value = this.value.toUpperCase();" minlength="18" maxlength="18">
                     @if(hasErrorFor('curp'))
                         <span>
                             {{ getErrorFor('curp') }}
+                        </span>
+                    @endif
+                </div>
+                {{--fiel--}}    
+                <div class="form-group col-sm">
+                    <label for="fiel">FIEL o e-firma</label>
+                    <input class="form-control" type="text" name="fiel" value="{{ old('fiel', '') }}" placeholder="(si es que se tiene)" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('fiel'))
+                        <span>
+                            {{ getErrorFor('fiel') }}
                         </span>
                     @endif
                 </div>

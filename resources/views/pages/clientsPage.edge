@@ -13,7 +13,7 @@ ATN - Clients
 <div class="container" style="margin-top: 3rem;">
     <div class="mx-auto" style="width: 50%; text-align: center;">
         <br>
-        <form action="{{ route('ClientController.indexSearch', {id: client.id}) }}" method="POST">
+        <form action="{{ route('ClientController.indexSearch') }}" method="POST">
             {{ csrfField() }}
             <div class="row">
                 <div class="form-group col-sm" >                  
@@ -24,7 +24,7 @@ ATN - Clients
         </form>
         <h1>Lista de clientes</h1>
         <br>
-        <a style="" href="/clients/newClient" ><button class="btn btn-secondary btn-lg" >Nuevo Cliente</button></a>
+        <a style="" href="/clients/newClient" ><button class="btn btn-primary btn-lg" >Nuevo Cliente</button></a>
         <br>
     </div>
     @if(clients)
