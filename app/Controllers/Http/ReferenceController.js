@@ -13,6 +13,9 @@ class ReferenceController {
         const client = await Client.find(id)
         const {
             name,
+            name2,
+            first_last_name,
+            sec_last_name,
             nacionality,
             birth,
             phone,
@@ -23,6 +26,9 @@ class ReferenceController {
         const ref = new Reference();
         ref.fill({
             name,
+            name2,
+            first_last_name,
+            sec_last_name,
             nacionality,
             birth,
             phone,
@@ -44,6 +50,9 @@ class ReferenceController {
         const refe = await Reference.find(params.id);
         refe.merge(request.only([
             'name',
+            'name2',
+            'first_last_name',
+            'sec_last_name',
             'nacionality',
             'birth',
             'phone',
