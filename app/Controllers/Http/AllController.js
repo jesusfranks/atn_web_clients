@@ -3,6 +3,7 @@
 const Client = use('App/Models/Client')
 const Database = use('Database')
 
+
 class AllController {
     async getClient({ params, view }) {
         const client = await Client.find(params.id);
@@ -33,8 +34,17 @@ class AllController {
         const references = await client.references().fetch();
         const credit = await client.credit().fetch();
         const bank = await client.bank().fetch();
-        const productt = await Database.raw(`SELECT products.id, products.promotion, products.cat, products.tasa, agreements.factor FROM products INNER JOIN credits ON products.id = ${credit.product_id} INNER JOIN agreements ON agreement_id = agreements.id`);
-        const product = JSON.parse(JSON.stringify(productt));
+        const producttt = await Database.raw(`SELECT products.id, products.promotion, products.term, products.cat, products.tasa, agreements.factor FROM products INNER JOIN credits ON products.id = ${credit.product_id} INNER JOIN agreements ON agreement_id = agreements.id`);
+        const productt = JSON.parse(JSON.stringify(producttt));
+        const [id] = productt[0];
+        const {promotion, term, cat, tasa, factor} = id;
+        const product = {
+            promotion,
+            term,
+            cat,
+            tasa,
+            factor
+        }
         const clientJSON = {
             client,
             adressC,
@@ -42,7 +52,7 @@ class AllController {
             adressJ,
             references,
             credit,
-            product: product[0],
+            product,
             bank
         };
         return response.json(clientJSON);

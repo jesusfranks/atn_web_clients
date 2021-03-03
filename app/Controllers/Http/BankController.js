@@ -15,17 +15,13 @@ class BankController {
         const {
             clabe,
             bank,
-            arrangement,
-            account,
-            payment_date
+            account
         } = request.all();
         const banco = new Bank();
         banco.fill({
             clabe,
             bank,
-            arrangement,
-            account,
-            payment_date
+            account
         });
         await client.bank().save(banco);
         session.flash({ message: 'Se ha creado nueva información de banco del cliente, continuemos!' });
@@ -42,9 +38,7 @@ class BankController {
         bank.merge(request.only([
             'clabe',
             'bank',
-            'arrangement',
-            'account',
-            'payment_date'
+            'account'
         ]));
         await bank.save();
         session.flash({ message: 'Se ha editado la info del cliente: bank' });

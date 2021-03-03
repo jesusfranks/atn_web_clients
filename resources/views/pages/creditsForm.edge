@@ -23,7 +23,7 @@ ATN - Clients form
                     {{--Promotor--}} 
                     <div class="form-group col-sm">
                         <label for="promotor_code">Código de promotor</label>
-                        <input class="form-control" type="text" name="promotor_code" value="{{ user.code }}">
+                        <input class="form-control" type="text" name="promotor_code" value="{{ user.code }}" minlength="7" maxlength="7" >
                         @if(hasErrorFor('promotor_code'))
                             <span>
                                 {{ getErrorFor('promotor_code') }}
@@ -33,7 +33,8 @@ ATN - Clients form
                     {{--Promotor nombre--}} 
                     <div class="form-group col-sm">
                         <label for="promotor_name">Nombre del promotor</label>
-                        <input class="form-control" type="text" name="promotor_name" value="{{ user.name + ' ' + user.first_last_name + ' ' + user.sec_last_name }}">
+                        <input class="form-control" type="text" name="promotor_name" value="{{ user.name + ' ' + user.first_last_name + ' ' + user.sec_last_name }}" onkeyup="this.value = this.value.toUpperCase();" 
+                        >
                         @if(hasErrorFor('promotor_name'))
                             <span>
                                 {{ getErrorFor('promotor_name') }}
@@ -46,7 +47,7 @@ ATN - Clients form
                     {{--Promotor--}} 
                     <div class="form-group col-sm">
                         <label for="promotor_code">Código de promotor</label>
-                        <input class="form-control" type="text" name="promotor_code" value="{{ credit.promotor_code }}">
+                        <input class="form-control" type="number" name="promotor_code" value="{{ credit.promotor_code }}" minlength="7" maxlength="7">
                         @if(hasErrorFor('promotor_code'))
                             <span>
                                 {{ getErrorFor('promotor_code') }}
@@ -56,7 +57,7 @@ ATN - Clients form
                     {{--Promotor nombre--}} 
                     <div class="form-group col-sm">
                         <label for="promotor_name">Nombre del promotor</label>
-                        <input class="form-control" type="text" name="promotor_name" value="{{ credit.promotor_name }}">
+                        <input class="form-control" type="text" name="promotor_name" value="{{ credit.promotor_name }}" onkeyup="this.value = this.value.toUpperCase();">
                         @if(hasErrorFor('promotor_name'))
                             <span>
                                 {{ getErrorFor('promotor_name') }}
@@ -70,7 +71,7 @@ ATN - Clients form
                 {{--Sucursal--}} 
                 <div class="form-group col-sm">
                     <label for="branch_office">Sucursal</label>
-                    <input class="form-control" type="text" name="branch_office" value="{{ credit.branch_office }}">
+                    <input class="form-control" type="text" name="branch_office" value="{{ credit.branch_office }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('branch_office'))
                         <span>
                             {{ getErrorFor('branch_office') }}
@@ -84,6 +85,16 @@ ATN - Clients form
                     @if(hasErrorFor('amount'))
                         <span>
                             {{ getErrorFor('amount') }}
+                        </span>
+                    @endif
+                </div>
+                {{--city--}} 
+                <div class="form-group col-sm">
+                    <label for="city">Ciudad y estado</label>
+                    <input class="form-control" type="text" name="city" value="{{ credit.city }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('city'))
+                        <span>
+                            {{ getErrorFor('city') }}
                         </span>
                     @endif
                 </div>
@@ -171,8 +182,35 @@ ATN - Clients form
                     </select>
                 </div>
             </div>
-        
-            </div>    
+            <div class="row">
+                {{--question--}}
+                <div class="form-group col-sm">
+                    <label for="question">¿Crédito previo?</label>
+                    <select class="form-control" id="question" name="question">
+                        @if(credit.question == 'NO')
+                            <option value="NO" selected >NO</option>
+                            <option value="SI">SI</option>
+                        @else
+                            <option value="NO">NO</option>
+                            <option value="SI" selected>SI</option>
+                        @endif
+                    </select>
+                </div>
+                {{--status--}}
+                <div class="form-check col-sm">
+                    <label for="status">Estado del crédito</label>
+                    <select class="form-control" id="status" name="status">
+                        @if(credit.status)
+                            <option value="1" selected>Activo</option>
+                            <option value="0" >Finalizado</option>
+                        @else
+                            <option value="1" >Activo</option>
+                            <option value="0" selected>Finalizado</option>
+                        @endif
+                    </select>
+                </div>
+            </div>
+                
             <div class="mx-auto" style="width: 50%; text-align: center;">
                 <button class="btn btn-secondary" type="submit">Guardar</button>
             </div>
@@ -190,7 +228,7 @@ ATN - Clients form
                         {{--Promotor--}} 
                         <div class="form-group col-sm">
                             <label for="promotor_code">Código de promotor</label>
-                            <input class="form-control" type="text" name="promotor_code" value="{{ user.code }}">
+                            <input class="form-control" type="number" name="promotor_code" value="{{ user.code }}" minlength="7" maxlength="7" >
                             @if(hasErrorFor('promotor_code'))
                                 <span>
                                     {{ getErrorFor('promotor_code') }}
@@ -200,7 +238,7 @@ ATN - Clients form
                         {{--Promotor nombre--}} 
                         <div class="form-group col-sm">
                             <label for="promotor_name">Nombre del promotor</label>
-                            <input class="form-control" type="text" name="promotor_name" value="{{ user.name + ' ' + user.first_last_name + ' ' + user.sec_last_name }}">
+                            <input class="form-control" type="text" name="promotor_name" value="{{ user.name + ' ' + user.first_last_name + ' ' + user.sec_last_name }}" onkeyup="this.value = this.value.toUpperCase();" >
                             @if(hasErrorFor('promotor_name'))
                                 <span>
                                     {{ getErrorFor('promotor_name') }}
@@ -213,7 +251,7 @@ ATN - Clients form
                         {{--Promotor--}} 
                         <div class="form-group col-sm">
                             <label for="promotor_code">Código de promotor</label>
-                            <input class="form-control" type="text" name="promotor_code" value="{{ old('promotor_code', '') }}">
+                            <input class="form-control" type="number" name="promotor_code" value="{{ old('promotor_code', '') }}" minlength="7" maxlength="7">
                             @if(hasErrorFor('promotor_code'))
                                 <span>
                                     {{ getErrorFor('promotor_code') }}
@@ -222,8 +260,8 @@ ATN - Clients form
                         </div>
                         {{--Promotor nombre--}} 
                         <div class="form-group col-sm">
-                            <label for="promotor_name">Nombre del promotor</label>
-                            <input class="form-control" type="text" name="promotor_name" value="{{ old('promotor_name', '') }}">
+                            <label for="promotor_name">Nombre completo del promotor</label>
+                            <input class="form-control" type="text" name="promotor_name" value="{{ old('promotor_name', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                             @if(hasErrorFor('promotor_name'))
                                 <span>
                                     {{ getErrorFor('promotor_name') }}
@@ -236,7 +274,7 @@ ATN - Clients form
                 <div class="row">
                     <div class="form-group col-sm">
                         <label for="agreement">Convenio</label>
-                        <select onchange="val()" name="agreement" id="agreement"class="form-control">
+                        <select onchange="ShowSelected();" name="agreement" id="agreement"class="form-control">
                             @each(agreement in agreements)
                                 <option value="{{ agreement.id }}">{{ agreement.factor }}</option>
                             @endeach
@@ -255,7 +293,7 @@ ATN - Clients form
                     {{--Sucursal--}} 
                     <div class="form-group col-sm">
                         <label for="branch_office">Sucursal</label>
-                        <input class="form-control" type="text" name="branch_office" value="{{ old('branch_office', 'ATN000') }}">
+                        <input class="form-control" type="text" name="branch_office" value="{{ old('branch_office', 'ATN000') }}" onkeyup="this.value = this.value.toUpperCase();">
                         @if(hasErrorFor('branch_office'))
                             <span>
                                 {{ getErrorFor('branch_office') }}
@@ -265,13 +303,23 @@ ATN - Clients form
                     {{--Cantidad--}} 
                     <div class="form-group col-sm">
                         <label for="amount">Cantidad</label>
-                        <input class="form-control" type="number" name="amount" value="{{ old('amount', '') }}">
+                        <input class="form-control" type="number" name="amount" value="{{ old('amount', '3000') }}" min="3000">
                         @if(hasErrorFor('amount'))
                             <span>
                                 {{ getErrorFor('amount') }}
                             </span>
                         @endif
                     </div>
+                     {{--city--}} 
+                <div class="form-group col-sm">
+                    <label for="city">Ciudad y estado</label>
+                    <input class="form-control" type="text" name="city" value="{{ old('city', 'PACHUCA DE SOTO, HIDALGO') }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('city'))
+                        <span>
+                            {{ getErrorFor('city') }}
+                        </span>
+                    @endif
+                </div>
                     {{--Fecha--}} 
                     <div class="form-group col-sm">
                         <label for="date">Fecha</label>
@@ -296,9 +344,9 @@ ATN - Clients form
                     <div class="form-group col-sm">
                         <label for="disposing">Forma de disposición</label>
                         <select class="form-control" id="disposing" name="disposing">
-                            <option value="Cheque" >Cheque</option>
-                            <option value="Transferencia" selected>Transferencia</option>
-                            <option value="Orden de pago" >Orden de pago</option>
+                            <option value="C" >Cheque</option>
+                            <option value="T" selected>Transferencia</option>
+                            <option value="O" >Orden de pago</option>
                         </select>
                         <br>
                     </div>
@@ -321,8 +369,24 @@ ATN - Clients form
                         </select>
                     </div>
                 </div>
-            
-                </div>    
+                <div class="row">
+                    {{--question--}}
+                    <div class="form-group col-sm">
+                        <label for="question">¿Crédito previo?</label>
+                        <select class="form-control" id="question" name="question">
+                            <option value="NO" selected >NO</option>
+                            <option value="SI">SI</option>
+                        </select>
+                    </div>
+                    {{--status--}}
+                    <div class="form-check col-sm">
+                        <label for="status">Estado del crédito</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="1" selected>Activo</option>
+                            <option value="0" >Finalizado</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="mx-auto" style="width: 50%; text-align: center;">
                     <button class="btn btn-secondary" type="submit">Guardar</button>
                 </div>
@@ -330,7 +394,7 @@ ATN - Clients form
         @endif
       
     @endif
-
+    
     
 </div>
   

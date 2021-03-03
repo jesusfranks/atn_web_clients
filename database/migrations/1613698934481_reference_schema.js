@@ -14,6 +14,7 @@ class ReferenceSchema extends Schema {
       table.string('phone', 90).notNullable()
       table.string('relationship', 90).notNullable()
       table.string('known', 90).notNullable()
+      table.boolean('status')
       table.timestamps()
     })
   }

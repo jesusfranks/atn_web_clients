@@ -58,9 +58,12 @@ class CreditController {
             amount,
             disposing,
             debt,
+            city,
             date,
             destination,
-            periodicity
+            periodicity,
+            question,
+            status
         } = request.all();
         const producto = await Product.find(product)
         const credit = new Credit();
@@ -71,9 +74,12 @@ class CreditController {
             amount,
             disposing,
             debt,
+            city,
             date,
             destination,
-            periodicity
+            periodicity,
+            question,
+            status
         });
         await client.credit().save(credit);
         await producto.credit().save(credit);
@@ -95,9 +101,12 @@ class CreditController {
             'amount',
             'disposing',
             'debt',
+            'city',
             'date',
             'destination',
-            'periodicity'
+            'periodicity',
+            'question',
+            'status'
         ]));
         await credit.save();
         session.flash({ message: 'Se ha editado la info del credito' });

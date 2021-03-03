@@ -23,7 +23,7 @@ ATN - Bank form
                 {{--clabe--}} 
                 <div class="form-group col-sm">
                     <label for="clabe">CLABE</label>
-                    <input class="form-control" type="text" name="clabe" value="{{ bank.clabe}}">
+                    <input class="form-control" type="text" name="clabe" value="{{ bank.clabe}}" minlength="18" maxlength="18">
                     @if(hasErrorFor('clabe'))
                         <span>
                             {{ getErrorFor('clabe') }}
@@ -33,45 +33,23 @@ ATN - Bank form
                 {{--Banco--}} 
                 <div class="form-group col-sm">
                     <label for="bank">Banco</label>
-                    <input class="form-control" type="text" name="bank" value="{{ bank.bank }}">
+                    <input class="form-control" type="text" name="bank" value="{{ bank.bank }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('bank'))
                         <span>
                             {{ getErrorFor('bank') }}
                         </span>
                     @endif
                 </div>
-            </div>
-            <div class="row">
-                {{--arrangement--}}    
-                <div class="form-group col-sm">
-                    <label for="arrangement">arrangement</label>
-                    <input class="form-control" type="text" name="arrangement" value="{{ bank.arrangement }}">
-                    @if(hasErrorFor('arrangement'))
-                        <span>
-                            {{ getErrorFor('arrangement') }}
-                        </span>
-                    @endif
-                </div>
                 {{--account--}}    
                 <div class="form-group col-sm">
                     <label for="account">Cuenta</label>
-                    <input class="form-control" type="text" name="account" value="{{ bank.account }}">
+                    <input class="form-control" type="text" name="account" value="{{ bank.account }}" minlength="5" maxlength="24">
                     @if(hasErrorFor('account'))
                     <span>
                         {{ getErrorFor('account') }}
                     </span>
                 @endif
                 </div>                
-                {{--fecha de pago--}}
-                <div class="form-group col-sm">
-                    <label for="payment_date">Telefono</label>
-                    <input class="form-control" type="text" name="payment_date" value="{{ bank.payment_date }}">
-                    @if(hasErrorFor('payment_date'))
-                        <span>
-                            {{ getErrorFor('payment_date') }}
-                        </span>
-                    @endif
-                </div>
             </div>
               
             <div class="mx-auto" style="width: 50%; text-align: center;">
@@ -91,7 +69,7 @@ ATN - Bank form
                 {{--clabe--}} 
                 <div class="form-group col-sm">
                     <label for="clabe">CLABE</label>
-                    <input class="form-control" type="text" name="clabe" value="{{ old('clabe', '')}}">
+                    <input class="form-control" type="text" name="clabe" value="{{ old('clabe', '')}}" minlength="18" maxlength="18">
                     @if(hasErrorFor('clabe'))
                         <span>
                             {{ getErrorFor('clabe') }}
@@ -101,46 +79,24 @@ ATN - Bank form
                 {{--Banco--}} 
                 <div class="form-group col-sm">
                     <label for="bank">Banco</label>
-                    <input class="form-control" type="text" name="bank" value="{{ old('bank', '') }}">
+                    <input class="form-control" type="text" name="bank" value="{{ old('bank', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('bank'))
                         <span>
                             {{ getErrorFor('bank') }}
                         </span>
                     @endif
                 </div>
-            </div>
-            <div class="row">
-                {{--arrangement--}}    
-                <div class="form-group col-sm">
-                    <label for="arrangement">Arrangement</label>
-                    <input class="form-control" type="text" name="arrangement" value="{{ old('arrangement', '') }}">
-                    @if(hasErrorFor('arrangement'))
-                        <span>
-                            {{ getErrorFor('arrangement') }}
-                        </span>
-                    @endif
-                </div>
                 {{--account--}}    
                 <div class="form-group col-sm">
                     <label for="account">Cuenta</label>
-                    <input class="form-control" type="text" name="account" value="{{ old('account', '') }}">
+                    <input class="form-control" type="text" name="account" value="{{ old('account', '') }}" minlength="5" maxlength="24">
                     @if(hasErrorFor('account'))
                     <span>
                         {{ getErrorFor('account') }}
                     </span>
                 @endif
                 </div>                
-                {{--fecha de pago--}}
-                <div class="form-group col-sm">
-                    <label for="payment_date">Telefono</label>
-                    <input class="form-control" type="text" name="payment_date" value="{{ old('payment_date', '') }}">
-                    @if(hasErrorFor('payment_date'))
-                        <span>
-                            {{ getErrorFor('payment_date') }}
-                        </span>
-                    @endif
-                </div>
-            </div>   
+            </div>                
                  
             <div class="mx-auto" style="width: 50%; text-align: center;">
                 <button class="btn btn-secondary" type="submit">Guardar</button>

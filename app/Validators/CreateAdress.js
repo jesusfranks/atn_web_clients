@@ -9,8 +9,7 @@ class CreateAdress {
         'crosses': 'required',
         'state': 'required',
         'town': 'required',
-        'contry': 'required',
-        'postal_code': 'required'
+        'contry': 'required'
     }
   }
 

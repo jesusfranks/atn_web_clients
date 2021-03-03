@@ -32,6 +32,7 @@ class AgreementSeeder {
           "id" : "1",
           "agreement_id" : "1",
           "promotion" : "AN0724",
+          "term" : "24",
           "cat" : "69.2",
           "tasa" : "60.99"
         },
@@ -39,6 +40,7 @@ class AgreementSeeder {
           "id" : "2",
           "agreement_id" : "1",
           "promotion" : "AN0736",
+          "term" : "36",
           "cat" : "67.2",
           "tasa" : "59.36"
         },
@@ -46,6 +48,7 @@ class AgreementSeeder {
           "id" : "3",
           "agreement_id" : "1",
           "promotion" : "AN0748",
+          "term" : "48",
           "cat" : "65.1",
           "tasa" : "57.68"
         },
@@ -53,6 +56,7 @@ class AgreementSeeder {
           "id" : "4",
           "agreement_id" : "1",
           "promotion" : "AN0772",
+          "term" : "72",
           "cat" : "61.2",
           "tasa" : "54.67"
         },
@@ -60,6 +64,7 @@ class AgreementSeeder {
           "id" : "5",
           "agreement_id" : "1",
           "promotion" : "AN0796",
+          "term" : "96",
           "cat" : "58.0",
           "tasa" : "52.23"
         },
@@ -67,6 +72,7 @@ class AgreementSeeder {
           "id" : "6",
           "agreement_id" : "2",
           "promotion" : "AN0124",
+          "term" : "24",
           "cat" : "86.1",
           "tasa" : "72.07"
         },
@@ -74,6 +80,7 @@ class AgreementSeeder {
           "id" : "7",
           "agreement_id" : "2",
           "promotion" : "AN0136",
+          "term" : "36",
           "cat" : "83.0",
           "tasa" : "69.79"
         },
@@ -81,6 +88,7 @@ class AgreementSeeder {
           "id" : "8",
           "agreement_id" : "2",
           "promotion" : "AN0148",
+          "term" : "48",
           "cat" : "79.8",
           "tasa" : "67.55"
         },
@@ -88,6 +96,7 @@ class AgreementSeeder {
           "id" : "9",
           "agreement_id" : "2",
           "promotion" : "AN0172",
+          "term" : "72",
           "cat" : "74.4",
           "tasa" : "63.71"
         },
@@ -95,6 +104,7 @@ class AgreementSeeder {
           "id" : "10",
           "agreement_id" : "2",
           "promotion" : "AN0196",
+          "term" : "96",
           "cat" : "70.1",
           "tasa" : "60.69"
         },
@@ -102,6 +112,7 @@ class AgreementSeeder {
           "id" : "11",
           "agreement_id" : "3",
           "promotion" : "AN0312",
+          "term" : "12",
           "cat" : "105.1",
           "tasa" : "84.59"
         },
@@ -109,6 +120,7 @@ class AgreementSeeder {
           "id" : "12",
           "agreement_id" : "3",
           "promotion" : "AN0324",
+          "term" : "24",
           "cat" : "102.2",
           "tasa" : "82.88"
         },
@@ -116,6 +128,7 @@ class AgreementSeeder {
           "id" : "13",
           "agreement_id" : "3",
           "promotion" : "AN0336",
+          "term" : "36",
           "cat" : "97.2",
           "tasa" : "79.89"
         },
@@ -123,6 +136,7 @@ class AgreementSeeder {
           "id" : "14",
           "agreement_id" : "3",
           "promotion" : "AN0348",
+          "term" : "48",
           "cat" : "92.6",
           "tasa" : "77.07"
         },
@@ -130,6 +144,7 @@ class AgreementSeeder {
           "id" : "15",
           "agreement_id" : "3",
           "promotion" : "AN0372",
+          "term" : "72",
           "cat" : "85.2",
           "tasa" : "72.40"
         }

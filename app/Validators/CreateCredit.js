@@ -9,6 +9,7 @@ class CreateCredit {
       'amount': 'required',
       'disposing': 'required',
       'debt': 'required',
+      'city': 'required',
       'date': 'required',
       'destination': 'required',
       'periodicity': 'required'

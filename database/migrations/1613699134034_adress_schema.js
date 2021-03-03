@@ -17,7 +17,7 @@ class AdressSchema extends Schema {
       table.string('state', 90).notNullable()
       table.string('town', 90).notNullable()
       table.string('contry', 90).notNullable()
-      table.string('postal_code', 90).notNullable()
+      table.string('postal_code', 90)
       table.timestamps()
     })
   }

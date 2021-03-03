@@ -15,10 +15,12 @@ class CreditSchema extends Schema {
       table.string('amount', 90).notNullable()
       table.string('disposing', 90).notNullable()
       table.string('debt', 90).notNullable()
+      table.string('city', 90).notNullable()
       table.string('date', 90).notNullable()
       table.string('destination', 90).notNullable()
       table.string('periodicity', 90).notNullable()
-      table.boolean('status').defaultTo(true)
+      table.string('question', 90)
+      table.boolean('status')
       table.timestamps()
     })
   }

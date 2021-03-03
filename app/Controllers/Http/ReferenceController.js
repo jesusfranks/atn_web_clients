@@ -17,7 +17,8 @@ class ReferenceController {
             birth,
             phone,
             relationship,
-            known
+            known,
+            status
         } = request.all();
         const ref = new Reference();
         ref.fill({
@@ -26,7 +27,8 @@ class ReferenceController {
             birth,
             phone,
             relationship,
-            known
+            known,
+            status
         });
         await client.references().save(ref);
         session.flash({ message: 'Se ha creado nueva referencia del cliente, continuemos!' });
@@ -46,7 +48,8 @@ class ReferenceController {
             'birth',
             'phone',
             'relationship',
-            'known'
+            'known',
+            'status'
         ]));
         await refe.save();
         session.flash({ message: 'Se ha editado la info del cliente: Referencia' });

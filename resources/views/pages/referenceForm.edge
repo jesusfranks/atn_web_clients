@@ -22,7 +22,7 @@ ATN - Clients form
                 {{--Nombre--}} 
                 <div class="form-group col-sm">
                     <label for="name">Nombre Completo</label>
-                    <input class="form-control" type="text" name="name" value="{{ reference.name}}">
+                    <input class="form-control" type="text" name="name" value="{{ reference.name}}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('name'))
                         <span>
                             {{ getErrorFor('name') }}
@@ -32,7 +32,7 @@ ATN - Clients form
                  {{--Teléfono--}}    
                  <div class="form-group col-sm">
                     <label for="phone">Teléfono</label>
-                    <input class="form-control" type="text" name="phone" value="{{ reference.phone }}">
+                    <input class="form-control" type="number" name="phone" value="{{ reference.phone }}" minlength="10" maxlength="10">
                     @if(hasErrorFor('phone'))
                     <span>
                         {{ getErrorFor('phone') }}
@@ -44,7 +44,7 @@ ATN - Clients form
                 {{--Nacionalidad--}} 
                 <div class="form-group col-sm">
                     <label for="nacionality">Nacionalidad</label>
-                    <input class="form-control" type="text" name="nacionality" value="{{ reference.nacionality }}">
+                    <input class="form-control" type="text" name="nacionality" value="{{ reference.nacionality }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('nacionality'))
                         <span>
                             {{ getErrorFor('nacionality') }}
@@ -54,7 +54,7 @@ ATN - Clients form
                 {{--Edad--}}    
                 <div class="form-group col-sm">
                     <label for="birth">Edad</label>
-                    <input class="form-control" type="text" name="birth" value="{{ reference.birth }}">
+                    <input class="form-control" type="number" name="birth" value="{{ reference.birth }}" min="18" max="80">
                     @if(hasErrorFor('birth'))
                         <span>
                             {{ getErrorFor('birth') }}
@@ -64,43 +64,56 @@ ATN - Clients form
             </div>
             <div class="row">
                 {{--Relación--}}
-                @if(reference.relationship == 'Conyuge')
+                @if(reference.relationship == 'CONYUGE')
                     <div class="form-group col-sm">
                         <label for="relationship">Relación</label>
                         <select id="relationship" name="relationship" class="form-control">
-                            <option selected>Conyuge</option>
-                            <option>Familiar</option>
-                            <option>Amistad</option>
+                            <option selected>CONYUGE</option>
+                            <option>FAMILIAR</option>
+                            <option>AMISTAD</option>
                         </select>
                     </div>
-                @elseif(reference.relationship == 'Familiar')
+                @elseif(reference.relationship == 'FAMILIAR')
                     <div class="form-group col-sm">
                         <label for="relationship">Relación</label>
                         <select id="relationship" name="relationship" class="form-control">
-                            <option >Conyuge</option>
-                            <option selected>Familiar</option>
-                            <option >Amistad</option>
+                            <option >CONYUGE</option>
+                            <option selected>FAMILIAR</option>
+                            <option >AMISTAD</option>
                         </select>
                     </div>
                 @else
                     <div class="form-group col-sm">
                         <label for="relationship">Relación</label>
                         <select id="relationship" name="relationship" class="form-control">
-                            <option >Conyuge</option>
-                            <option>Familiar</option>
-                            <option selected>Amistad</option>
+                            <option >CONYUGE</option>
+                            <option>FAMILIAR</option>
+                            <option selected>AMISTAD</option>
                         </select>
                     </div>
                 @endif
                 {{--known--}}
                 <div class="form-group col-sm">
-                    <label for="known">Tiempo de conocerse</label>
-                    <input class="form-control" type="known" name="known" value="{{ reference.known }}">
+                    <label for="known">Tiempo de conocerse (años aprox)</label>
+                    <input class="form-control" type="number" name="known" value="{{ reference.known }}" min="0" max="70">
                     @if(hasErrorFor('known'))
                         <span>
                             {{ getErrorFor('known') }}
                         </span>
                     @endif
+                </div>
+                {{--status--}}
+                <div class="form-check col-sm">
+                    <label for="status">Elegir para mostar referencia</label>
+                    <select class="form-control" id="status" name="status">
+                        @if(reference.status)
+                            <option value="1" selected>si</option>
+                            <option value="0" >no</option>
+                        @else
+                            <option value="1" >si</option>
+                            <option value="0" selected>no</option>
+                        @endif
+                    </select>
                 </div>
             </div>
                
@@ -121,7 +134,7 @@ ATN - Clients form
                 {{--Nombre--}} 
                 <div class="form-group col-sm">
                     <label for="name">Nombre Completo</label>
-                    <input class="form-control" type="text" name="name" value="{{ old('name', '') }}">
+                    <input class="form-control" type="text" name="name" value="{{ old('name', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('name'))
                         <span>
                             {{ getErrorFor('name') }}
@@ -131,7 +144,7 @@ ATN - Clients form
                  {{--Teléfono--}}    
                  <div class="form-group col-sm">
                     <label for="phone">Teléfono</label>
-                    <input class="form-control" type="text" name="phone" value="{{ old('phone', '') }}">
+                    <input class="form-control" type="number" name="phone" value="{{ old('phone', '') }}" minlength="10" maxlength="10">
                     @if(hasErrorFor('phone'))
                     <span>
                         {{ getErrorFor('phone') }}
@@ -143,7 +156,7 @@ ATN - Clients form
                 {{--Nacionalidad--}} 
                 <div class="form-group col-sm">
                     <label for="nacionality">Nacionalidad</label>
-                    <input class="form-control" type="text" name="nacionality" value="{{ old('nacionality', 'Mexicana') }}">
+                    <input class="form-control" type="text" name="nacionality" value="{{ old('nacionality', 'MEXICANA') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('nacionality'))
                         <span>
                             {{ getErrorFor('nacionality') }}
@@ -153,7 +166,7 @@ ATN - Clients form
                 {{--Edad--}}    
                 <div class="form-group col-sm">
                     <label for="birth">Edad</label>
-                    <input class="form-control" type="text" name="birth" value="{{ old('birth', '') }}">
+                    <input class="form-control" type="number" name="birth" value="{{ old('birth', '30') }}" min="18" max="80">
                     @if(hasErrorFor('birth'))
                         <span>
                             {{ getErrorFor('birth') }}
@@ -166,21 +179,28 @@ ATN - Clients form
                 <div class="form-group col-sm">
                     <label for="relationship">Relación</label>
                     <select id="relationship" name="relationship" class="form-control">
-                        <option selected>Conyuge</option>
-                        <option>Familiar</option>
-                        <option>Amistad</option>
-                        <option>Compañero de trabajo</option>
+                        <option selected>CONYUGE</option>
+                        <option>FAMILIAR</option>
+                        <option>AMISTAD</option>
                     </select>
                 </div>
                 {{--known--}}
                 <div class="form-group col-sm">
-                    <label for="known">Tiempo de conocerse</label>
-                    <input class="form-control" type="known" name="known" value="{{ old('known', '') }}">
+                    <label for="known">Tiempo de conocerse (años aprox)</label>
+                    <input class="form-control" type="number" name="known" value="{{ old('known', '') }}" min="0" max="70">
                     @if(hasErrorFor('known'))
                         <span>
                             {{ getErrorFor('known') }}
                         </span>
                     @endif
+                </div>
+                {{--status--}}
+                <div class="form-check col-sm">
+                    <label for="status">Elegir para mostar referencia</label>
+                    <select class="form-control" id="status" name="status">
+                        <option value="1" selected>Si</option>
+                        <option value="0" >No</option>
+                    </select>
                 </div>
             </div>            
      

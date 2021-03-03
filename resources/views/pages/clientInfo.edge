@@ -305,6 +305,10 @@ ATN - Clients Info
                         <th scope="row">Tiempo de conocerse</th>
                         <td >{{ reference.known }}</td>
                     </tr>
+                    <tr >
+                        <th scope="row">Elegir</th>
+                        <td >{{ reference.status }}</td>
+                    </tr>
                 </tbody>
             </table>
             <div class="mx-auto" style="width: 50%; text-align: center;">
@@ -342,10 +346,7 @@ ATN - Clients Info
                     <th scope="row">Cuenta</th>
                     <td >{{ bank.account }}</td>
                 </tr>
-                <tr >
-                    <th scope="row">Fecha de pago</th>
-                    <td >{{ bank.payment_date }}</td>
-                </tr>
+                
             </tbody>
         </table>
         <div class="mx-auto" style="width: 50%; text-align: center;">

@@ -136,6 +136,10 @@ ATN - Credit Info
                     <td >{{ credit.debt }}</td>
                 </tr>
                 <tr >
+                    <th scope="row">Ciudad y estado</th>
+                    <td >{{ credit.city }}</td>
+                </tr>
+                <tr >
                     <th scope="row">Fecha</th>
                     <td >{{ credit.date }}</td>
                 </tr>
@@ -146,6 +150,14 @@ ATN - Credit Info
                 <tr >
                     <th scope="row">Periodicidad</th>
                     <td >{{ credit.periodicity }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">¿Crédito anterior?</th>
+                    <td >{{ credit.question }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Crédito activo</th>
+                    <td >{{ credit.status }}</td>
                 </tr>
             </tbody>
         </table>

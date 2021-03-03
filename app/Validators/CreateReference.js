@@ -6,7 +6,8 @@ class CreateReference {
         'name': 'required',
         'phone': 'required',
         'relationship': 'required',
-        'known': 'required'
+        'known': 'required',
+        'status': 'required'
     }
   }
 
