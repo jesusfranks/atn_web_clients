@@ -8,8 +8,8 @@ class CreateAdress {
         'suburb': 'required',
         'crosses': 'required',
         'state': 'required',
-        'contry': 'required',
-        'postal_code': 'required'
+        'town': 'required',
+        'contry': 'required'
     }
   }
 

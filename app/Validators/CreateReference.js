@@ -4,9 +4,12 @@ class CreateReference {
   get rules() {
     return {
         'name': 'required',
+        'first_last_name': 'required',
+        'sec_last_name': 'required',
         'phone': 'required',
         'relationship': 'required',
-        'known': 'required'
+        'known': 'required',
+        'status': 'required'
     }
   }
 

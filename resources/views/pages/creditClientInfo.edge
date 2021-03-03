@@ -23,6 +23,12 @@ ATN - Credit Info
                     <th scope="row">Nombre</th>
                     <td >{{ client.name }}</td>
                 </tr>
+                @if(client.name2 != null)
+                    <tr >
+                        <th scope="row">Segundo nombre</th>
+                        <td >{{ client.name2 }}</td>
+                    </tr>
+                @endif
                 <tr >
                     <th scope="row">Primer Apellido</th>
                     <td >{{ client.first_last_name }}</td>
@@ -40,16 +46,32 @@ ATN - Credit Info
                     <td >{{ client.nacionality }}</td>
                 </tr>
                 <tr >
+                    <th scope="row">País</th>
+                    <td >{{ client.country }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Estado</th>
+                    <td >{{ client.state }}</td>
+                </tr>
+                <tr >
                     <th scope="row">Fecha de nacimiento</th>
                     <td >{{ client.birth }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Genero</th>
+                    <td >{{ client.gender }}</td>
                 </tr>
                 <tr >
                     <th scope="row">Tipo de casa</th>
                     <td >{{ client.type_housing }}</td>
                 </tr>
                 <tr >
-                    <th scope="row">Tiempo de arraigo</th>
-                    <td >{{ client.living_there }}</td>
+                    <th scope="row">Tiempo de arraigo años</th>
+                    <td >{{ client.living_there_y }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Tiempo de arraigo meses</th>
+                    <td >{{ client.living_there_m }}</td>
                 </tr>
                 <tr >
                     <th scope="row">Email</th>
@@ -70,6 +92,10 @@ ATN - Credit Info
                 <tr >
                     <th scope="row">CURP</th>
                     <td >{{ client.curp }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">FIEL</th>
+                    <td >{{ client.fiel }}</td>
                 </tr>
             </tbody>
 
@@ -110,6 +136,10 @@ ATN - Credit Info
                     <td >{{ credit.debt }}</td>
                 </tr>
                 <tr >
+                    <th scope="row">Ciudad y estado</th>
+                    <td >{{ credit.city }}</td>
+                </tr>
+                <tr >
                     <th scope="row">Fecha</th>
                     <td >{{ credit.date }}</td>
                 </tr>
@@ -120,6 +150,14 @@ ATN - Credit Info
                 <tr >
                     <th scope="row">Periodicidad</th>
                     <td >{{ credit.periodicity }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">¿Crédito anterior?</th>
+                    <td >{{ credit.question }}</td>
+                </tr>
+                <tr >
+                    <th scope="row">Crédito activo</th>
+                    <td >{{ credit.status }}</td>
                 </tr>
             </tbody>
         </table>

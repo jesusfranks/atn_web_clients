@@ -21,8 +21,8 @@ ATN - Clients form
         <div class="row">
             {{--Calle--}} 
             <div class="form-group col-sm">
-                <label for="street">Lugar</label>
-                <input class="form-control" type="text" name="street" value="{{ adress.street}}">
+                <label for="street">Calle</label>
+                <input class="form-control" type="text" name="street" value="{{ adress.street}}" onkeyup="this.value = this.value.toUpperCase();">
                 @if(hasErrorFor('street'))
                     <span>
                         {{ getErrorFor('street') }}
@@ -32,7 +32,7 @@ ATN - Clients form
             {{--Número--}} 
             <div class="form-group col-sm">
                 <label for="number">Número</label>
-                <input class="form-control" type="text" name="number" value="{{ adress.number }}">
+                <input class="form-control" type="number" name="number" value="{{ adress.number }}" minlength="0" maxlength="5">
                 @if(hasErrorFor('number'))
                     <span>
                         {{ getErrorFor('number') }}
@@ -42,7 +42,7 @@ ATN - Clients form
             {{--Número interior--}}    
             <div class="form-group col-sm">
                 <label for="int_number">Número interior</label>
-                <input class="form-control" type="text" name="int_number" value="{{ adress.int_number }}">
+                <input class="form-control" type="number" name="int_number" value="{{ adress.int_number }}" minlength="0" maxlength="5">
                 @if(hasErrorFor('int_number'))
                     <span>
                         {{ getErrorFor('int_number') }}
@@ -54,19 +54,29 @@ ATN - Clients form
             {{--Colonia--}}    
             <div class="form-group col-sm">
                 <label for="suburb">Colonia</label>
-                <input class="form-control" type="text" name="suburb" value="{{ adress.suburb }}">
+                <input class="form-control" type="text" name="suburb" value="{{ adress.suburb }}" onkeyup="this.value = this.value.toUpperCase();">
                 @if(hasErrorFor('suburb'))
-                <span>
-                    {{ getErrorFor('suburb') }}
-                </span>
-            @endif
+                    <span>
+                        {{ getErrorFor('suburb') }}
+                    </span>
+                @endif
+            </div>
+            {{--Municipio--}}    
+            <div class="form-group col-sm">
+                <label for="town">Municipio</label>
+                <input class="form-control" type="text" name="town" value="{{ adress.town }}" onkeyup="this.value = this.value.toUpperCase();">
+                @if(hasErrorFor('town'))
+                    <span>
+                        {{ getErrorFor('town') }}
+                    </span>
+                @endif
             </div>                
         </div>
         <div class="row">
             {{--Código postal--}}
             <div class="form-group col-sm">
                 <label for="postal_code">Código postal</label>
-                <input class="form-control" type="text" name="postal_code" value="{{ adress.postal_code }}">
+                <input class="form-control" type="number" name="postal_code" value="{{ adress.postal_code }}"  minlength="5" maxlength="5">
                 @if(hasErrorFor('postal_code'))
                     <span>
                         {{ getErrorFor('postal_code') }}
@@ -76,7 +86,7 @@ ATN - Clients form
             {{--Cruzamientos--}}
             <div class="form-group col-sm">
                 <label for="crosses">Cruzamientos</label>
-                <input class="form-control" type="crosses" name="crosses" value="{{ adress.crosses }}">
+                <input class="form-control" type="text" name="crosses" value="{{ adress.crosses }}" onkeyup="this.value = this.value.toUpperCase();">
                 @if(hasErrorFor('crosses'))
                     <span>
                         {{ getErrorFor('crosses') }}
@@ -88,7 +98,7 @@ ATN - Clients form
             {{--Estado--}}    
             <div class="form-group col-sm">
                 <label for="state">Estado</label>
-                <input class="form-control" type="text" name="state" value="{{ adress.state }}">
+                <input class="form-control" type="text" name="state" value="{{ adress.state }}" onkeyup="this.value = this.value.toUpperCase();">
                 @if(hasErrorFor('state'))
                     <span>
                         {{ getErrorFor('state') }}
@@ -99,7 +109,7 @@ ATN - Clients form
             {{--País--}}    
             <div class="form-group col-sm">
                 <label for="contry">País</label>
-                <input class="form-control" type="text" name="contry" value="{{ adress.contry }}">
+                <input class="form-control" type="text" name="contry" value="{{ adress.contry }}" onkeyup="this.value = this.value.toUpperCase();">
                 @if(hasErrorFor('contry'))
                     <span>
                         {{ getErrorFor('contry') }}
@@ -123,8 +133,8 @@ ATN - Clients form
             <div class="row">
                 {{--Calle--}} 
                 <div class="form-group col-sm">
-                    <label for="street">Lugar</label>
-                    <input class="form-control" type="text" name="street" value="{{ old('street', '') }}">
+                    <label for="street">Calle</label>
+                    <input class="form-control" type="text" name="street" value="{{ old('street', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('street'))
                         <span>
                             {{ getErrorFor('street') }}
@@ -134,7 +144,7 @@ ATN - Clients form
                 {{--Número--}} 
                 <div class="form-group col-sm">
                     <label for="number">Número</label>
-                    <input class="form-control" type="text" name="number" value="{{ old('number', '') }}">
+                    <input class="form-control" type="number" name="number" value="{{ old('number', '') }}" minlength="0" maxlength="5">
                     @if(hasErrorFor('number'))
                         <span>
                             {{ getErrorFor('number') }}
@@ -144,7 +154,7 @@ ATN - Clients form
                 {{--Número interior--}}    
                 <div class="form-group col-sm">
                     <label for="int_number">Número interior</label>
-                    <input class="form-control" type="text" name="int_number" value="{{ old('int_number', '') }}">
+                    <input class="form-control" type="number" name="int_number" value="{{ old('int_number', '') }}" minlength="0" maxlength="5">
                     @if(hasErrorFor('int_number'))
                         <span>
                             {{ getErrorFor('int_number') }}
@@ -156,19 +166,29 @@ ATN - Clients form
                 {{--Colonia--}}    
                 <div class="form-group col-sm">
                     <label for="suburb">Colonia</label>
-                    <input class="form-control" type="text" name="suburb" value="{{ old('suburb', '') }}">
+                    <input class="form-control" type="text" name="suburb" value="{{ old('suburb', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('suburb'))
                     <span>
                         {{ getErrorFor('suburb') }}
                     </span>
                 @endif
+                </div>
+                {{--Municipio--}}
+                <div class="form-group col-sm">
+                    <label for="town">Municipio</label>
+                    <input class="form-control" type="text" name="town" value="{{ old('town', '') }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('town'))
+                        <span>
+                            {{ getErrorFor('town') }}
+                        </span>
+                    @endif
                 </div>                
             </div>
             <div class="row">
                 {{--Código postal--}}
                 <div class="form-group col-sm">
                     <label for="postal_code">Código postal</label>
-                    <input class="form-control" type="text" name="postal_code" value="{{ old('postal_code', '') }}">
+                    <input class="form-control" type="number" name="postal_code" value="{{ old('postal_code', '') }}" minlength="5" maxlength="5">
                     @if(hasErrorFor('postal_code'))
                         <span>
                             {{ getErrorFor('postal_code') }}
@@ -178,7 +198,7 @@ ATN - Clients form
                 {{--Cruzamientos--}}
                 <div class="form-group col-sm">
                     <label for="crosses">Cruzamientos</label>
-                    <input class="form-control" type="crosses" name="crosses" value="{{ old('crosses', '') }}">
+                    <input class="form-control" type="crosses" name="crosses" value="{{ old('crosses', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('crosses'))
                         <span>
                             {{ getErrorFor('crosses') }}
@@ -190,7 +210,7 @@ ATN - Clients form
                 {{--Estado--}}    
                 <div class="form-group col-sm">
                     <label for="state">Estado</label>
-                    <input class="form-control" type="text" name="state" value="{{ old('state', '') }}">
+                    <input class="form-control" type="text" name="state" value="{{ old('state', 'HIDALGO') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('state'))
                         <span>
                             {{ getErrorFor('state') }}
@@ -201,7 +221,7 @@ ATN - Clients form
                 {{--País--}}    
                 <div class="form-group col-sm">
                     <label for="contry">País</label>
-                    <input class="form-control" type="text" name="contry" value="{{ old('contry', '') }}">
+                    <input class="form-control" type="text" name="contry" value="{{ old('contry', 'MEXICO') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('contry'))
                         <span>
                             {{ getErrorFor('contry') }}
@@ -223,8 +243,8 @@ ATN - Clients form
             <div class="row">
                 {{--Calle--}} 
                 <div class="form-group col-sm">
-                    <label for="street">Lugar</label>
-                    <input class="form-control" type="text" name="street" value="{{ old('street', '') }}">
+                    <label for="street">Calle</label>
+                    <input class="form-control" type="text" name="street" value="{{ old('street', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('street'))
                         <span>
                             {{ getErrorFor('street') }}
@@ -234,7 +254,7 @@ ATN - Clients form
                 {{--Número--}} 
                 <div class="form-group col-sm">
                     <label for="number">Número</label>
-                    <input class="form-control" type="text" name="number" value="{{ old('number', '') }}">
+                    <input class="form-control" type="number" name="number" value="{{ old('number', '') }}" minlength="0" maxlength="5">
                     @if(hasErrorFor('number'))
                         <span>
                             {{ getErrorFor('number') }}
@@ -244,7 +264,7 @@ ATN - Clients form
                 {{--Número interior--}}    
                 <div class="form-group col-sm">
                     <label for="int_number">Número interior</label>
-                    <input class="form-control" type="text" name="int_number" value="{{ old('int_number', '') }}">
+                    <input class="form-control" type="number" name="int_number" value="{{ old('int_number', '') }}" minlength="0" maxlength="5">
                     @if(hasErrorFor('int_number'))
                         <span>
                             {{ getErrorFor('int_number') }}
@@ -256,19 +276,29 @@ ATN - Clients form
                 {{--Colonia--}}    
                 <div class="form-group col-sm">
                     <label for="suburb">Colonia</label>
-                    <input class="form-control" type="text" name="suburb" value="{{ old('suburb', '') }}">
+                    <input class="form-control" type="text" name="suburb" value="{{ old('suburb', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('suburb'))
                     <span>
                         {{ getErrorFor('suburb') }}
                     </span>
                 @endif
-                </div>                
+                </div> 
+                 {{--Municipio--}}
+                 <div class="form-group col-sm">
+                    <label for="town">Municipio</label>
+                    <input class="form-control" type="text" name="town" value="{{ old('town', '') }}" onkeyup="this.value = this.value.toUpperCase();">
+                    @if(hasErrorFor('town'))
+                        <span>
+                            {{ getErrorFor('town') }}
+                        </span>
+                    @endif
+                </div>               
             </div>
             <div class="row">
                 {{--Código postal--}}
                 <div class="form-group col-sm">
                     <label for="postal_code">Código postal</label>
-                    <input class="form-control" type="text" name="postal_code" value="{{ old('postal_code', '') }}">
+                    <input class="form-control" type="number" name="postal_code" value="{{ old('postal_code', '') }}" minlength="5" maxlength="5" >
                     @if(hasErrorFor('postal_code'))
                         <span>
                             {{ getErrorFor('postal_code') }}
@@ -278,7 +308,7 @@ ATN - Clients form
                 {{--Cruzamientos--}}
                 <div class="form-group col-sm">
                     <label for="crosses">Cruzamientos</label>
-                    <input class="form-control" type="crosses" name="crosses" value="{{ old('crosses', '') }}">
+                    <input class="form-control" type="crosses" name="crosses" value="{{ old('crosses', '') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('crosses'))
                         <span>
                             {{ getErrorFor('crosses') }}
@@ -290,7 +320,7 @@ ATN - Clients form
                 {{--Estado--}}    
                 <div class="form-group col-sm">
                     <label for="state">Estado</label>
-                    <input class="form-control" type="text" name="state" value="{{ old('state', '') }}">
+                    <input class="form-control" type="text" name="state" value="{{ old('state', 'HIDALGO') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('state'))
                         <span>
                             {{ getErrorFor('state') }}
@@ -301,7 +331,7 @@ ATN - Clients form
                 {{--País--}}    
                 <div class="form-group col-sm">
                     <label for="contry">País</label>
-                    <input class="form-control" type="text" name="contry" value="{{ old('contry', '') }}">
+                    <input class="form-control" type="text" name="contry" value="{{ old('contry', 'MEXICO') }}" onkeyup="this.value = this.value.toUpperCase();">
                     @if(hasErrorFor('contry'))
                         <span>
                             {{ getErrorFor('contry') }}

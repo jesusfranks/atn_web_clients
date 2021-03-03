@@ -8,9 +8,10 @@ class ProductSchema extends Schema {
     this.create('products', (table) => {
       table.increments()
       table.integer('agreement_id').unsigned().references('id').inTable('agreements')
-      table.string('promotion', 80).notNullable()
-      table.string('cat', 80).notNullable()
-      table.string('tasa', 80).notNullable()
+      table.string('promotion', 9).notNullable()
+      table.string('term', 9).notNullable()
+      table.string('cat', 9).notNullable()
+      table.string('tasa', 9).notNullable()
     })
   }
 

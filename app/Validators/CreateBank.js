@@ -3,10 +3,8 @@
 class CreateBank {
   get rules() {
     return {
-      'clabe': 'required',
-      'bank': 'required',
-      'arrangement': 'required',
-      'account': 'required'
+      'clabe': 'required|unique:banks',
+      'bank': 'required'
     }
   }
 

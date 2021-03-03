@@ -4,10 +4,12 @@ class CreateJob {
   get rules() {
     return {
       'place': 'required',
+      'dependence': 'required',
       'occupation': 'required',
       'job': 'required',
-      'time_working': 'required',
-      'phone': 'required',
+      'time_working_y': 'required',
+      'time_working_m': 'required',
+      'type': 'required',
       'payroll': 'required',
       'income': 'required'
     }

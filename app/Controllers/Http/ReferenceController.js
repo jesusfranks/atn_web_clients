@@ -13,20 +13,28 @@ class ReferenceController {
         const client = await Client.find(id)
         const {
             name,
+            name2,
+            first_last_name,
+            sec_last_name,
             nacionality,
             birth,
             phone,
             relationship,
-            known
+            known,
+            status
         } = request.all();
         const ref = new Reference();
         ref.fill({
             name,
+            name2,
+            first_last_name,
+            sec_last_name,
             nacionality,
             birth,
             phone,
             relationship,
-            known
+            known,
+            status
         });
         await client.references().save(ref);
         session.flash({ message: 'Se ha creado nueva referencia del cliente, continuemos!' });
@@ -42,11 +50,15 @@ class ReferenceController {
         const refe = await Reference.find(params.id);
         refe.merge(request.only([
             'name',
+            'name2',
+            'first_last_name',
+            'sec_last_name',
             'nacionality',
             'birth',
             'phone',
             'relationship',
-            'known'
+            'known',
+            'status'
         ]));
         await refe.save();
         session.flash({ message: 'Se ha editado la info del cliente: Referencia' });
