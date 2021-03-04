@@ -167,17 +167,17 @@ ATN - Clients form
                     <label for="periodicity">Periodicidad</label>
                     <select class="form-control" id="periodicity" name="periodicity">
                         @if(credit.periodicity == 'Mensual')
-                            <option value="Mensual" selected>Mensual</option>
-                            <option value="Quincenal" >Quincenal</option>
-                            <option value="Catorcenal">Catorcenal</option>
+                            <option value="mensuales" selected>Mensual</option>
+                            <option value="quincenales" >Quincenal</option>
+                            <option value="catorcenales">Catorcenal</option>
                         @elseif(credit.periodicity == 'Quincenal')
-                            <option value="Mensual">Mensual</option>
-                            <option value="Quincenal" selected>Quincenal</option>
-                            <option value="Catorcenal">Catorcenal</option>
+                            <option value="mensuales">Mensual</option>
+                            <option value="quincenales" selected>Quincenal</option>
+                            <option value="catorcelanes">Catorcenal</option>
                         @else
-                            <option value="Mensual">Mensual</option>
-                            <option value="Quincenal" >Quincenal</option>
-                            <option value="Catorcenal" selected>Catorcenal</option>
+                            <option value="mensuales">Mensual</option>
+                            <option value="quincenales" >Quincenal</option>
+                            <option value="catorcenales" selected>Catorcenal</option>
                             @endif
                     </select>
                 </div>
@@ -363,9 +363,9 @@ ATN - Clients form
                     <div class="form-group col-sm">
                         <label for="periodicity">Periodicidad</label>
                         <select class="form-control" id="periodicity" name="periodicity">
-                            <option value="Mensual">Mensual</option>
-                            <option value="Quincenal" selected >Quincenal</option>
-                            <option value="Catorcenal">Catorcenal</option>
+                            <option value="mensuales">Mensual</option>
+                            <option value="quincenales" selected >Quincenal</option>
+                            <option value="catorcenales">Catorcenal</option>
                         </select>
                     </div>
                 </div>
