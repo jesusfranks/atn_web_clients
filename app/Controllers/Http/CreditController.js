@@ -5,6 +5,7 @@ const Agreement = use('App/Models/Agreement')
 const Product = use('App/Models/Product')
 const Credit = use('App/Models/Credit')
 const Database = use('Database');
+const Env = use('Env');
 
 class CreditController {
 
@@ -12,27 +13,29 @@ class CreditController {
         const user = await auth.getUser();
         //const clientes = await Database.table('clients').innerJoin('credits', 'clients.id', 'credits.client_id')
         //console.log('clientes', clientes)
+        const reportHost = Env.get('REPORT_HOST', '127.0.0.1:8080');
         if (user.promotor) {
             const clients = await user.clients().fetch();
-            return view.render('pages.creditClientsPage', { clients: clients.toJSON() })
+            return view.render('pages.creditClientsPage', { clients: clients.toJSON(), reportHost })
             //return view.render('pages.creditClientsPage', { clients: clients.toJSON(), clientes: clientes.toJSON() })
         } else {
             const clients = await Client.all();
-            return view.render('pages.creditClientsPage', { clients: clients.toJSON() })
+            return view.render('pages.creditClientsPage', { clients: clients.toJSON(), reportHost })
         }
     }
 
     async indexSearch({ request, auth, view }) {
         const user = await auth.getUser();
         const { search } = request.all();
+        const reportHost = Env.get('REPORT_HOST', '127.0.0.1:8080');
         if (user.promotor) {
             const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, name2, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE) AND clients.user_id = ${user.id}`);
             const clients = JSON.parse(JSON.stringify(cliensss))
-            return view.render('pages.creditClientsPage', { clients: clients[0] })
+            return view.render('pages.creditClientsPage', { clients: clients[0], reportHost })
         } else {
             const cliensss = await Database.raw(`SELECT * FROM clients WHERE MATCH(name, name2, first_last_name, sec_last_name) AGAINST ("*${search}" IN BOOLEAN MODE)`);
             const clients = JSON.parse(JSON.stringify(cliensss))
-            return view.render('pages.creditClientsPage', { clients: clients[0] })
+            return view.render('pages.creditClientsPage', { clients: clients[0], reportHost })
         }
     }
 
